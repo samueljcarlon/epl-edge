@@ -3,7 +3,7 @@ name: Run collector and publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 09 * * *"
+    - cron: "0 */3 * * *"
 
 permissions:
   contents: write
