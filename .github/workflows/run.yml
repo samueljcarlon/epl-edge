@@ -32,7 +32,7 @@ jobs:
         run: |
           python -m src.collect
 
-      - name: Export JSON for Pages
+      - name: Export public JSON
         run: |
           python -m src.export
 
@@ -40,6 +40,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add site/public data/app.db site/public/data || true
+          git add site/public data/app.db || true
           git commit -m "Update data + site" || echo "No changes"
           git push
