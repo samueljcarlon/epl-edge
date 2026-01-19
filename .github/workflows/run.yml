@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: collector-and-publish
+  group: collector-publish-main
   cancel-in-progress: true
 
 jobs:
@@ -44,8 +44,24 @@ jobs:
 
       - name: Commit outputs
         run: |
+          set -e
+
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
+
+          # Sync with latest main to avoid "fetch first" rejects
+          git fetch origin main
+          git checkout main
+          git pull --rebase origin main
+
+          # Stage generated outputs (adjust if your exporter writes more files later)
           git add site/public data/app.db || true
-          git commit -m "Update data + site" || echo "No changes"
-          git push
+
+          # Only commit if there are staged changes
+          if git diff --staged --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git commit -m "Update data + site"
+          git push origin main
