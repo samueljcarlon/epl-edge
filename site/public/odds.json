@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-01-19T18:58:50.311202+00:00",
+  "generated_at_utc": "2026-01-19T21:38:30.548429+00:00",
   "count": 250,
   "items": [
     {
@@ -7,11 +7,11 @@
       "fixture_id": "537997",
       "commence_time_utc": "2026-01-19T20:00:00Z",
       "matchweek": 22,
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "home_team": "Brighton & Hove Albion FC",
       "away_team": "AFC Bournemouth",
-      "home_goals": null,
-      "away_goals": null,
+      "home_goals": 0,
+      "away_goals": 1,
       "bookmaker": "William Hill",
       "market": "totals",
       "line": 2.5,
