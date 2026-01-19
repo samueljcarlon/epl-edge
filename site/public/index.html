@@ -5,225 +5,251 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SportsSignal</title>
   <style>
-    :root{
-      --bg:#0b1220;
-      --panel:#0e1a2b;
-      --panel2:#0c1626;
-      --text:#e6edf7;
-      --muted:#93a4c7;
-      --line:rgba(255,255,255,.08);
-      --accent:#5aa7ff;
-      --pill:rgba(90,167,255,.15);
-      --ok:#27d17f;
-      --warn:#ffcc66;
-      --bad:#ff6b6b;
-      --radius:14px;
+    :root {
+      --bg: #071018;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.65);
+      --border: rgba(255,255,255,0.10);
+      --pill: rgba(255,255,255,0.07);
+      --shadow: 0 10px 40px rgba(0,0,0,0.40);
+      --radius: 18px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:radial-gradient(1200px 600px at 20% -10%, rgba(90,167,255,.25), transparent 55%),
-                 radial-gradient(900px 500px at 90% 0%, rgba(39,209,127,.18), transparent 55%),
-                 var(--bg);
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 70% 0%, rgba(0, 180, 255, 0.18), transparent 60%),
+                  radial-gradient(800px 400px at 15% 10%, rgba(0, 255, 160, 0.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
     }
-    header{
-      padding:26px 22px 14px;
-      max-width:1200px;
-      margin:0 auto;
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 18px 80px; }
+
+    h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: 0.2px; }
+    .sub { color: var(--muted); margin: 0 0 18px; font-size: 13px; }
+
+    .controls {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
     }
-    h1{margin:0;font-size:22px;letter-spacing:.2px}
-    .sub{margin:6px 0 0;color:var(--muted);font-size:13px}
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:0 22px 28px;
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 0.8fr 0.8fr;
+      gap: 10px;
+      align-items: end;
     }
-    .controls{
-      display:grid;
-      gap:10px;
-      grid-template-columns: 1.3fr 1fr 1fr 1fr .7fr;
-      align-items:end;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      backdrop-filter: blur(8px);
+
+    label { display: block; font-size: 12px; color: var(--muted); margin: 0 0 6px; }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      outline: none;
     }
-    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
-    input, select{
-      width:100%;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:var(--panel2);
-      color:var(--text);
-      outline:none;
+
+    button {
+      cursor: pointer;
+      background: rgba(255,255,255,0.07);
+      font-weight: 600;
     }
-    input::placeholder{color:rgba(147,164,199,.65)}
-    .row{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin-top:10px;
-      flex-wrap:wrap;
+    button:hover { background: rgba(255,255,255,0.10); }
+
+    .row2 {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    .btn{
-      padding:9px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      cursor:pointer;
-      font-weight:600;
+
+    .chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--pill);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
     }
-    .btn.primary{background:rgba(90,167,255,.18); border-color:rgba(90,167,255,.35)}
-    .pill{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:7px 10px;
-      border-radius:999px;
-      background:var(--pill);
-      border:1px solid rgba(90,167,255,.35);
-      font-size:12px;
-      color:var(--text);
+
+    .table {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-    .pill small{color:var(--muted);font-weight:600}
-    .meta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
+
+    .thead, .trow {
+      display: grid;
+      grid-template-columns: 3fr 1.2fr 1fr 0.9fr 1.4fr;
+      gap: 0;
+      align-items: center;
     }
-    .table{
-      margin-top:12px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:rgba(0,0,0,.15);
+
+    .thead {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 12px;
+      border-bottom: 1px solid var(--border);
     }
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:13px;
+
+    .thead div, .trow div {
+      padding: 12px 14px;
+      border-right: 1px solid rgba(255,255,255,0.06);
     }
-    thead th{
-      text-align:left;
-      padding:12px 12px;
-      color:var(--muted);
-      font-size:12px;
-      border-bottom:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      position:sticky; top:0;
+    .thead div:last-child, .trow div:last-child { border-right: none; }
+
+    .trow {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    tbody td{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      vertical-align:top;
+    .trow:last-child { border-bottom: none; }
+
+    .fixture {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.2;
     }
-    tbody tr:hover{background:rgba(255,255,255,.03)}
-    .teams{font-weight:700}
-    .kick{color:var(--muted);font-size:12px;margin-top:4px}
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:4px 8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      color:var(--text);
-      font-size:12px;
-      margin-right:6px;
-      margin-top:2px;
+    .meta {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
     }
-    .price{
-      display:grid;
-      gap:6px;
-      grid-template-columns:1fr 1fr;
-      min-width:160px;
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--pill);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      white-space: nowrap;
     }
-    .box{
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+
+    .prices {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
     }
-    .box b{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
-    .empty{
-      padding:24px;
-      color:var(--muted);
-      text-align:center;
+
+    .priceBox {
+      min-width: 105px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.22);
     }
-    @media (max-width: 980px){
-      .controls{grid-template-columns:1fr 1fr; }
+
+    .priceTop { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .priceVal { font-size: 14px; font-weight: 800; margin-top: 3px; }
+
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.20);
+      display: inline-block;
+    }
+    .dot.green { background: rgba(0,255,140,0.70); }
+    .dot.red { background: rgba(255,70,70,0.75); }
+    .dot.amber { background: rgba(255,200,0,0.75); }
+
+    .empty {
+      padding: 16px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .thead, .trow { grid-template-columns: 2fr 1fr; }
+      .thead div:nth-child(3),
+      .thead div:nth-child(4),
+      .thead div:nth-child(5),
+      .trow div:nth-child(3),
+      .trow div:nth-child(4),
+      .trow div:nth-child(5) { display: none; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>SportsSignal</h1>
-    <div class="sub">Odds + fixtures updated automatically. Filter, sort, export.</div>
-  </header>
-
   <div class="wrap">
+    <h1>SportsSignal</h1>
+    <p class="sub">Odds + fixtures updated automatically. Filter, sort, export. Now with value lights.</p>
+
     <div class="controls">
-      <div>
-        <label for="q">Search team</label>
-        <input id="q" placeholder="e.g. Arsenal, Spurs, City" />
-      </div>
-      <div>
-        <label for="bookmaker">Bookmaker</label>
-        <select id="bookmaker"></select>
-      </div>
-      <div>
-        <label for="market">Market</label>
-        <select id="market"></select>
-      </div>
-      <div>
-        <label for="line">Line</label>
-        <select id="line"></select>
-      </div>
-      <div>
-        <label for="sort">Sort</label>
-        <select id="sort">
-          <option value="kick_asc">Kickoff (soonest)</option>
-          <option value="kick_desc">Kickoff (latest)</option>
-          <option value="price_over_desc">Over price (high to low)</option>
-          <option value="price_over_asc">Over price (low to low-ish)</option>
-          <option value="price_under_desc">Under price (high to low)</option>
-          <option value="price_under_asc">Under price (low to high)</option>
-        </select>
+      <div class="grid">
+        <div>
+          <label>Search team</label>
+          <input id="q" placeholder="e.g. Arsenal, Spurs, City" />
+        </div>
+
+        <div>
+          <label>Bookmaker</label>
+          <select id="bookmaker"></select>
+        </div>
+
+        <div>
+          <label>Market</label>
+          <select id="market"></select>
+        </div>
+
+        <div>
+          <label>Line</label>
+          <select id="line"></select>
+        </div>
+
+        <div>
+          <label>Sort</label>
+          <select id="sort">
+            <option value="kickoff_asc">Kickoff (soonest)</option>
+            <option value="kickoff_desc">Kickoff (latest)</option>
+            <option value="value_desc">Value (best first)</option>
+          </select>
+        </div>
       </div>
 
-      <div class="row" style="grid-column:1/-1; justify-content:space-between;">
-        <div class="meta">
-          <span class="pill"><small>Status</small> <span id="status">Idle</span></span>
-          <button class="btn" id="refresh">Refresh</button>
-          <button class="btn primary" id="download">Download JSON</button>
-          <span class="pill"><small>Rows</small> <span id="count">0</span></span>
-        </div>
-        <div class="meta">
-          <span class="pill"><small>Updated</small> <span id="updated">-</span></span>
-        </div>
+      <div class="row2">
+        <span class="chip" id="status">Status: Loading</span>
+        <button id="refreshBtn" style="width:auto">Refresh</button>
+        <button id="downloadBtn" style="width:auto">Download JSON</button>
+
+        <span class="chip">Value threshold:
+          <strong id="thrLabel">3%</strong>
+        </span>
+        <input id="thr" type="range" min="0" max="10" step="0.5" value="3" style="width:240px" />
+
+        <span class="chip" id="countChip">Rows: 0</span>
+        <span class="chip" id="updatedChip">Updated: -</span>
       </div>
     </div>
 
     <div class="table">
-      <table>
-        <thead>
-          <tr>
-            <th style="width:34%">Fixture</th>
-            <th style="width:14%">Bookmaker</th>
-            <th style="width:18%">Market</th>
-            <th style="width:14%">Line</th>
-            <th style="width:20%">Prices</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-      <div id="empty" class="empty" style="display:none;"></div>
+      <div class="thead">
+        <div>Fixture</div>
+        <div>Bookmaker</div>
+        <div>Market</div>
+        <div>Line</div>
+        <div>Prices</div>
+      </div>
+      <div id="rows"></div>
+      <div id="empty" class="empty" style="display:none"></div>
     </div>
   </div>
 
@@ -234,162 +260,240 @@
       market: document.getElementById('market'),
       line: document.getElementById('line'),
       sort: document.getElementById('sort'),
-      refresh: document.getElementById('refresh'),
-      download: document.getElementById('download'),
-      status: document.getElementById('status'),
-      count: document.getElementById('count'),
-      updated: document.getElementById('updated'),
-      tbody: document.getElementById('tbody'),
+      rows: document.getElementById('rows'),
       empty: document.getElementById('empty'),
+      status: document.getElementById('status'),
+      countChip: document.getElementById('countChip'),
+      updatedChip: document.getElementById('updatedChip'),
+      refreshBtn: document.getElementById('refreshBtn'),
+      downloadBtn: document.getElementById('downloadBtn'),
+      thr: document.getElementById('thr'),
+      thrLabel: document.getElementById('thrLabel'),
     };
 
     let RAW = [];
-    let FILTERED = [];
+    let META = { generated_at_utc: null };
 
-    function uniq(arr){ return [...new Set(arr)].filter(Boolean); }
+    function uniq(arr) {
+      return Array.from(new Set(arr)).filter(Boolean).sort((a,b) => String(a).localeCompare(String(b)));
+    }
 
-    function setOptions(select, values, labelAll="All"){
-      const cur = select.value;
-      select.innerHTML = "";
+    function parseISO(s) {
+      const d = new Date(s);
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function fmtKickoff(iso) {
+      const d = parseISO(iso);
+      if (!d) return '-';
+      const dd = d.toLocaleString(undefined, { year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+      return dd.replace(',', '');
+    }
+
+    function setSelectOptions(select, options, allLabel = 'All') {
+      select.innerHTML = '';
       const optAll = document.createElement('option');
-      optAll.value = "";
-      optAll.textContent = labelAll;
+      optAll.value = '';
+      optAll.textContent = allLabel;
       select.appendChild(optAll);
-      for (const v of values){
-        const o = document.createElement('option');
-        o.value = v;
-        o.textContent = v;
-        select.appendChild(o);
-      }
-      select.value = values.includes(cur) ? cur : "";
-    }
 
-    function fmtISO(iso){
-      try{
-        const d = new Date(iso);
-        return d.toLocaleString(undefined, {year:"numeric", month:"short", day:"2-digit", hour:"2-digit", minute:"2-digit"});
-      }catch(e){
-        return iso || "-";
+      for (const o of options) {
+        const opt = document.createElement('option');
+        opt.value = o;
+        opt.textContent = o;
+        select.appendChild(opt);
       }
     }
 
-    function teams(r){
-      return `${r.home_team} vs ${r.away_team}`;
+    function buildConsensus(items) {
+      // consensus key: fixture|market|line
+      // store avg over and avg under
+      const map = new Map();
+
+      for (const it of items) {
+        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
+        if (!map.has(key)) map.set(key, { over: [], under: [] });
+        const v = map.get(key);
+        if (it.over_price != null) v.over.push(Number(it.over_price));
+        if (it.under_price != null) v.under.push(Number(it.under_price));
+      }
+
+      const out = new Map();
+      for (const [k, v] of map.entries()) {
+        const avg = (arr) => arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : null;
+        out.set(k, { over_avg: avg(v.over), under_avg: avg(v.under) });
+      }
+      return out;
     }
 
-    function renderRow(r){
-      const tr = document.createElement('tr');
+    function valueDot(price, avg, thrPct) {
+      if (price == null || avg == null) return { cls: '', edge: 0 };
+      const edge = (Number(price) / Number(avg)) - 1; // + means better price than avg
+      const thr = thrPct / 100;
 
-      const tdFixture = document.createElement('td');
-      tdFixture.innerHTML = `
-        <div class="teams">${teams(r)}</div>
-        <div class="kick">Kickoff: ${fmtISO(r.commence_time_utc)} · MW ${r.matchweek ?? "-"}</div>
-      `;
-
-      const tdBook = document.createElement('td');
-      tdBook.innerHTML = `<span class="tag">${r.bookmaker || "-"}</span>`;
-
-      const tdMarket = document.createElement('td');
-      tdMarket.innerHTML = `<span class="tag">${r.market || "-"}</span>`;
-
-      const tdLine = document.createElement('td');
-      tdLine.textContent = (r.line ?? "-");
-
-      const tdPrice = document.createElement('td');
-      tdPrice.innerHTML = `
-        <div class="price">
-          <div class="box"><b>Over</b>${r.over_price ?? "-"}</div>
-          <div class="box"><b>Under</b>${r.under_price ?? "-"}</div>
-        </div>
-      `;
-
-      tr.appendChild(tdFixture);
-      tr.appendChild(tdBook);
-      tr.appendChild(tdMarket);
-      tr.appendChild(tdLine);
-      tr.appendChild(tdPrice);
-      return tr;
+      if (edge >= thr) return { cls: 'green', edge };
+      if (edge <= -thr) return { cls: 'red', edge };
+      return { cls: 'amber', edge };
     }
 
-    function buildFilters(){
-      setOptions(els.bookmaker, uniq(RAW.map(r => r.bookmaker)).sort());
-      setOptions(els.market, uniq(RAW.map(r => r.market)).sort());
-      setOptions(els.line, uniq(RAW.map(r => String(r.line))).sort((a,b)=>parseFloat(a)-parseFloat(b)));
-    }
-
-    function apply(){
-      const q = (els.q.value || "").toLowerCase().trim();
-      const bm = els.bookmaker.value;
-      const mk = els.market.value;
-      const ln = els.line.value;
-
-      FILTERED = RAW.filter(r => {
-        const s = `${r.home_team} ${r.away_team}`.toLowerCase();
-        if (q && !s.includes(q)) return false;
-        if (bm && r.bookmaker !== bm) return false;
-        if (mk && r.market !== mk) return false;
-        if (ln && String(r.line) !== ln) return false;
-        return true;
-      });
-
+    function apply() {
+      const q = (els.q.value || '').trim().toLowerCase();
+      const bookmaker = els.bookmaker.value;
+      const market = els.market.value;
+      const line = els.line.value;
       const sort = els.sort.value;
-      const getKick = r => new Date(r.commence_time_utc).getTime() || 0;
+      const thrPct = Number(els.thr.value || 0);
 
-      FILTERED.sort((a,b)=>{
-        if (sort === "kick_asc") return getKick(a) - getKick(b);
-        if (sort === "kick_desc") return getKick(b) - getKick(a);
-        if (sort === "price_over_desc") return (b.over_price ?? -Infinity) - (a.over_price ?? -Infinity);
-        if (sort === "price_over_asc") return (a.over_price ?? Infinity) - (b.over_price ?? Infinity);
-        if (sort === "price_under_desc") return (b.under_price ?? -Infinity) - (a.under_price ?? -Infinity);
-        if (sort === "price_under_asc") return (a.under_price ?? Infinity) - (b.under_price ?? Infinity);
-        return 0;
-      });
+      els.thrLabel.textContent = `${thrPct}%`;
 
-      els.count.textContent = String(FILTERED.length);
-      els.tbody.innerHTML = "";
-      if (FILTERED.length === 0){
-        els.empty.style.display = "block";
-        els.empty.textContent = "No rows match your filters. If you just launched, your odds feed might still be empty.";
+      let items = RAW.slice();
+
+      if (q) {
+        items = items.filter(it =>
+          (it.home_team || '').toLowerCase().includes(q) ||
+          (it.away_team || '').toLowerCase().includes(q)
+        );
+      }
+      if (bookmaker) items = items.filter(it => it.bookmaker === bookmaker);
+      if (market) items = items.filter(it => it.market === market);
+      if (line) items = items.filter(it => String(it.line) === String(line));
+
+      const consensus = buildConsensus(items);
+
+      // compute a "best edge" for sorting
+      for (const it of items) {
+        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
+        const c = consensus.get(key) || {};
+        const dOver = valueDot(it.over_price, c.over_avg, thrPct);
+        const dUnder = valueDot(it.under_price, c.under_avg, thrPct);
+        it._bestEdge = Math.max(dOver.edge || 0, dUnder.edge || 0);
+      }
+
+      if (sort === 'kickoff_asc') {
+        items.sort((a,b) => (a.commence_time_utc || '').localeCompare(b.commence_time_utc || ''));
+      } else if (sort === 'kickoff_desc') {
+        items.sort((a,b) => (b.commence_time_utc || '').localeCompare(a.commence_time_utc || ''));
+      } else if (sort === 'value_desc') {
+        items.sort((a,b) => (b._bestEdge || 0) - (a._bestEdge || 0));
+      }
+
+      render(items, consensus, thrPct);
+    }
+
+    function render(items, consensus, thrPct) {
+      els.rows.innerHTML = '';
+      els.countChip.textContent = `Rows: ${items.length}`;
+
+      if (!items.length) {
+        els.empty.style.display = '';
+        els.empty.textContent = 'No rows match your filters. Your feed might still be warming up.';
         return;
       }
-      els.empty.style.display = "none";
-      for (const r of FILTERED){
-        els.tbody.appendChild(renderRow(r));
+      els.empty.style.display = 'none';
+
+      for (const it of items) {
+        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
+        const c = consensus.get(key) || {};
+        const dOver = valueDot(it.over_price, c.over_avg, thrPct);
+        const dUnder = valueDot(it.under_price, c.under_avg, thrPct);
+
+        const row = document.createElement('div');
+        row.className = 'trow';
+
+        const fixture = document.createElement('div');
+        fixture.innerHTML = `
+          <div class="fixture">${it.home_team} vs ${it.away_team}</div>
+          <div class="meta">Kickoff: ${fmtKickoff(it.commence_time_utc)} · MW ${it.matchweek ?? '-'} · ${it.status ?? '-'}</div>
+        `;
+
+        const bm = document.createElement('div');
+        bm.innerHTML = `<span class="pill">${it.bookmaker}</span>`;
+
+        const mk = document.createElement('div');
+        mk.innerHTML = `<span class="pill">${it.market}</span>`;
+
+        const ln = document.createElement('div');
+        ln.innerHTML = `<span class="pill">${it.line}</span>`;
+
+        const prices = document.createElement('div');
+        prices.className = 'prices';
+
+        const overBox = document.createElement('div');
+        overBox.className = 'priceBox';
+        overBox.innerHTML = `
+          <div class="priceTop"><span class="dot ${dOver.cls}"></span> Over</div>
+          <div class="priceVal">${it.over_price ?? '-'}</div>
+        `;
+
+        const underBox = document.createElement('div');
+        underBox.className = 'priceBox';
+        underBox.innerHTML = `
+          <div class="priceTop"><span class="dot ${dUnder.cls}"></span> Under</div>
+          <div class="priceVal">${it.under_price ?? '-'}</div>
+        `;
+
+        prices.appendChild(overBox);
+        prices.appendChild(underBox);
+
+        row.appendChild(fixture);
+        row.appendChild(bm);
+        row.appendChild(mk);
+        row.appendChild(ln);
+        row.appendChild(prices);
+
+        els.rows.appendChild(row);
       }
     }
 
-    async function load(){
-      els.status.textContent = "Loading...";
-      try{
-        const res = await fetch('./odds.json', { cache: "no-store" });
+    function rebuildDropdowns() {
+      setSelectOptions(els.bookmaker, uniq(RAW.map(x => x.bookmaker)), 'All');
+      setSelectOptions(els.market, uniq(RAW.map(x => x.market)), 'All');
+
+      // line depends on market selection
+      const mk = els.market.value;
+      const lines = uniq(RAW
+        .filter(x => !mk || x.market === mk)
+        .map(x => String(x.line))
+      );
+      setSelectOptions(els.line, lines, 'All');
+    }
+
+    async function load() {
+      els.status.textContent = 'Status: Loading';
+      try {
+        const res = await fetch('./odds.json', { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
 
-        // FIX: your JSON is { generated_at_utc, count, items: [...] }
-        RAW = Array.isArray(data) ? data : (data.items ?? data.rows ?? data.data ?? []);
+        META = data;
+        RAW = Array.isArray(data.items) ? data.items : [];
+        els.status.textContent = 'Status: Loaded';
 
-        els.status.textContent = "Loaded";
-        els.updated.textContent = fmtISO(data.generated_at_utc || new Date().toISOString());
-        buildFilters();
+        const d = data.generated_at_utc ? new Date(data.generated_at_utc) : null;
+        els.updatedChip.textContent = d && !isNaN(d.getTime())
+          ? `Updated: ${d.toLocaleString()}`
+          : 'Updated: -';
+
+        rebuildDropdowns();
         apply();
-      }catch(err){
-        els.status.textContent = "Failed to load";
-        els.empty.style.display = "block";
-        els.empty.innerHTML = `<div class="empty">Could not load <b>odds.json</b>. ${String(err)}</div>`;
-        els.count.textContent = "0";
-        RAW = [];
+      } catch (err) {
+        els.status.textContent = 'Status: Failed to load';
+        els.rows.innerHTML = '';
+        els.empty.style.display = '';
+        els.empty.textContent = 'Failed to load odds.json. If this is your first deploy, give it a minute then refresh.';
       }
     }
 
     els.q.addEventListener('input', apply);
     els.bookmaker.addEventListener('change', apply);
-    els.market.addEventListener('change', apply);
+    els.market.addEventListener('change', () => { rebuildDropdowns(); apply(); });
     els.line.addEventListener('change', apply);
     els.sort.addEventListener('change', apply);
+    els.thr.addEventListener('input', apply);
 
-    els.refresh.addEventListener('click', load);
+    els.refreshBtn.addEventListener('click', load);
 
-    els.download.addEventListener('click', () => {
+    els.downloadBtn.addEventListener('click', () => {
       const a = document.createElement('a');
       a.href = './odds.json';
       a.download = 'odds.json';
