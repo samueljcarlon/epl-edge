@@ -1,87 +1,96 @@
 from __future__ import annotations
 
 import json
-import os
-from datetime import datetime, timezone
 from pathlib import Path
+import sqlite3
+from datetime import datetime, timezone
 
-from src.db import connect, init_db
+
+def utcnow_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 
-def export_odds_json(db_path: str, out_path: str, limit: int = 500) -> int:
-    con = connect(db_path)
-    init_db(con)
-
+def export_latest(db_path: str, out_path: str) -> dict:
+    con = sqlite3.connect(db_path)
+    con.row_factory = sqlite3.Row
     cur = con.cursor()
 
-    # Latest totals odds snapshots joined to fixtures
+    # Latest snapshot per fixture + bookmaker + market + line
     rows = cur.execute(
         """
+        WITH ranked AS (
+          SELECT
+            o.*,
+            ROW_NUMBER() OVER (
+              PARTITION BY o.fixture_id, o.bookmaker, o.market, o.line
+              ORDER BY o.captured_at_utc DESC
+            ) AS rn
+          FROM odds_snapshots o
+        )
         SELECT
-            o.captured_at_utc,
-            o.fixture_id,
-            f.commence_time_utc,
-            f.matchweek,
-            f.status,
-            f.home_team,
-            f.away_team,
-            f.home_goals,
-            f.away_goals,
-            o.bookmaker,
-            o.market,
-            o.line,
-            o.over_price,
-            o.under_price
-        FROM odds_snapshots o
-        JOIN fixtures f ON f.fixture_id = o.fixture_id
-        WHERE o.market = 'totals'
-        ORDER BY o.captured_at_utc DESC
-        LIMIT ?
-        """,
-        (limit,),
+          r.captured_at_utc,
+          r.fixture_id,
+          f.commence_time_utc,
+          f.matchweek,
+          f.status,
+          f.home_team,
+          f.away_team,
+          f.home_goals,
+          f.away_goals,
+          r.bookmaker,
+          r.market,
+          r.line,
+          r.over_price,
+          r.under_price
+        FROM ranked r
+        JOIN fixtures f ON f.fixture_id = r.fixture_id
+        WHERE r.rn = 1
+        ORDER BY f.commence_time_utc ASC, f.home_team ASC, r.bookmaker ASC, r.line ASC
+        """
     ).fetchall()
 
-    payload = {
-        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "count": len(rows),
-        "items": [],
-    }
-
-    for r in rows:
-        payload["items"].append(
+    items = []
+    for row in rows:
+        items.append(
             {
-                "captured_at_utc": r["captured_at_utc"],
-                "fixture_id": r["fixture_id"],
-                "commence_time_utc": r["commence_time_utc"],
-                "matchweek": r["matchweek"],
-                "status": r["status"],
-                "home_team": r["home_team"],
-                "away_team": r["away_team"],
-                "home_goals": r["home_goals"],
-                "away_goals": r["away_goals"],
-                "bookmaker": r["bookmaker"],
-                "market": r["market"],
-                "line": r["line"],
-                "over_price": r["over_price"],
-                "under_price": r["under_price"],
+                "captured_at_utc": row["captured_at_utc"],
+                "fixture_id": str(row["fixture_id"]),
+                "commence_time_utc": row["commence_time_utc"],
+                "matchweek": row["matchweek"],
+                "status": row["status"],
+                "home_team": row["home_team"],
+                "away_team": row["away_team"],
+                "home_goals": row["home_goals"],
+                "away_goals": row["away_goals"],
+                "bookmaker": row["bookmaker"],
+                "market": row["market"],
+                "line": row["line"],
+                "over_price": row["over_price"],
+                "under_price": row["under_price"],
             }
         )
 
-    out_file = Path(out_path)
-    out_file.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "generated_at_utc": utcnow_iso(),
+        "count": len(items),
+        "items": items,
+    }
 
-    out_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    return len(rows)
+    Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+    Path(out_path).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return payload
 
 
 def main() -> None:
-    # Defaults work in GitHub Actions and locally if you keep the same structure
-    db_path = os.environ.get("DB_PATH", "data/app.db")
-    out_path = os.environ.get("OUT_JSON_PATH", "site/public/odds.json")
-    limit = int(os.environ.get("EXPORT_LIMIT", "500"))
+    import argparse
 
-    n = export_odds_json(db_path=db_path, out_path=out_path, limit=limit)
-    print(f"Exported {n} rows to {out_path}")
+    p = argparse.ArgumentParser()
+    p.add_argument("--db", default="data/app.db")
+    p.add_argument("--out", default="site/public/odds.json")
+    args = p.parse_args()
+
+    payload = export_latest(args.db, args.out)
+    print(f"Exported {payload['count']} rows to {args.out}")
 
 
 if __name__ == "__main__":
