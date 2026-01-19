@@ -21,6 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync main (pull latest before generating files)
+        run: |
+          git fetch origin main
+          git checkout main
+          git pull --rebase origin main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -49,19 +55,20 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
 
-          # Sync with latest main to avoid "fetch first" rejects
-          git fetch origin main
-          git checkout main
-          git pull --rebase origin main
-
-          # Stage generated outputs (adjust if your exporter writes more files later)
+          # Stage outputs
           git add site/public data/app.db || true
 
-          # Only commit if there are staged changes
+          # If nothing changed, stop cleanly
           if git diff --staged --quiet; then
             echo "No changes"
             exit 0
           fi
 
           git commit -m "Update data + site"
-          git push origin main
+
+          # Push, and if rejected (race condition), rebase then push again
+          git push origin main || (
+            echo "Push rejected, rebasing then retrying..." &&
+            git pull --rebase origin main &&
+            git push origin main
+          )
