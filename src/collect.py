@@ -13,7 +13,7 @@ FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 # The Odds API v4 supported markets for /sports/{sport_key}/odds
-# Docs: h2h, spreads, totals, outrights
+# Keep this tight to avoid 422 errors.
 ALLOWED_ODDS_MARKETS = {"h2h", "spreads", "totals", "outrights"}
 
 
@@ -23,8 +23,8 @@ def _norm(s: str) -> str:
 
 def sanitize_markets(markets: str) -> str:
     """
-    Accept a comma-separated markets string and return only those supported by The Odds API v4.
-    Prevents 422 errors (e.g., 'alternate_totals' is not supported on this endpoint).
+    Accept comma-separated markets and keep only those supported by The Odds API v4.
+    This prevents 422 errors (e.g. 'alternate_totals' is not supported on this endpoint).
     """
     parts = [_norm(x) for x in (markets or "").split(",") if _norm(x)]
     keep = [p for p in parts if p in ALLOWED_ODDS_MARKETS]
@@ -73,7 +73,10 @@ def upsert_fixtures(con, matches_json: dict) -> int:
         full = score.get("fullTime") or {}
         hg = full.get("home")
         ag = full.get("away")
-        rows.append((fixture_id, commence, matchday, status, home, away, hg, ag, now_iso))
+
+        rows.append(
+            (fixture_id, commence, matchday, status, home, away, hg, ag, now_iso)
+        )
 
     executemany(
         con,
@@ -106,14 +109,14 @@ def fetch_odds(
     odds_format: str,
     date_format: str,
 ) -> list[dict]:
-    markets = sanitize_markets(markets)
+    markets_clean = sanitize_markets(markets)
 
     r = requests.get(
         f"{ODDS_API_BASE}/sports/{sport_key}/odds",
         params={
             "apiKey": odds_key,
             "regions": regions,
-            "markets": markets,
+            "markets": markets_clean,
             "oddsFormat": odds_format,
             "dateFormat": date_format,
         },
@@ -125,8 +128,8 @@ def fetch_odds(
 
 def store_totals_snapshots(con, events: list[dict], captured_at: str) -> int:
     """
-    Store ALL totals lines available (2.5, 3.5, 1.5, etc.) per bookmaker per fixture.
-    Previously you were effectively only keeping one line, which makes the UI line dropdown useless.
+    Stores all totals lines that the API actually provides.
+    If the API only provides 2.5, then that's all you'll see in the UI.
     """
     cur = con.cursor()
     rows = []
@@ -161,7 +164,7 @@ def store_totals_snapshots(con, events: list[dict], captured_at: str) -> int:
                 if mk.get("key") != "totals":
                     continue
 
-                # Aggregate outcomes by point (line)
+                # outcomes grouped by line (point)
                 by_line: dict[float, dict[str, float]] = {}
 
                 for out in mk.get("outcomes", []):
@@ -170,6 +173,7 @@ def store_totals_snapshots(con, events: list[dict], captured_at: str) -> int:
                     price = out.get("price")
                     if point is None or price is None:
                         continue
+
                     try:
                         line = float(point)
                         pr = float(price)
@@ -181,7 +185,6 @@ def store_totals_snapshots(con, events: list[dict], captured_at: str) -> int:
                     if name in ("over", "under"):
                         by_line[line][name] = pr
 
-                # Only write rows where we have both prices
                 for line, ou in by_line.items():
                     if "over" in ou and "under" in ou:
                         rows.append(
