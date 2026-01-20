@@ -2,17 +2,15 @@ from __future__ import annotations
 
 import requests
 from datetime import datetime, timezone
-from pathlib import Path
-
 from src.settings import get_settings
 from src.db import connect, init_db, executemany
 
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
+# These are the ones that matter for multiple goal lines
 SAFE_MARKETS = [
-    "totals",  # 2.5 goals etc
-    "btts",
-    "h2h",
+    "totals",
+    "alternate_totals",
 ]
 
 
@@ -28,7 +26,7 @@ def fetch_market(settings, market: str):
 
     r = requests.get(url, params=params, timeout=20)
 
-    # 422 means this market is not supported right now, not a hard failure
+    # 422 means market unsupported right now, don't crash the pipeline
     if r.status_code == 422:
         print(f"[collect] Market unsupported right now: {market}")
         return []
@@ -40,18 +38,8 @@ def fetch_market(settings, market: str):
 def main():
     settings = get_settings()
 
-    # Ensure DB folder exists (extra safety, connect() also handles it)
-    Path(settings.db_path).parent.mkdir(parents=True, exist_ok=True)
-
     con = connect(settings.db_path)
     init_db(con)
-
-    # Fail fast if schema is wrong
-    cur = con.execute(
-        "SELECT name FROM sqlite_master WHERE type='table' AND name='odds';"
-    )
-    if cur.fetchone() is None:
-        raise RuntimeError("DB init failed: table 'odds' was not created")
 
     captured = datetime.now(timezone.utc).isoformat()
     rows = []
@@ -73,8 +61,7 @@ def main():
                     if m.get("key") != market:
                         continue
 
-                    # NOTE: This currently only writes totals as Over/Under prices.
-                    # For btts and h2h, over_price/under_price will usually remain None.
+                    # For totals and alternate_totals, outcomes are Over/Under with a "point"
                     for o in m.get("outcomes", []):
                         rows.append(
                             {
@@ -86,13 +73,9 @@ def main():
                                 "away_team": away,
                                 "bookmaker": book,
                                 "market": market,
-                                "line": o.get("point"),  # only totals has this
-                                "over_price": o.get("price")
-                                if o.get("name") == "Over"
-                                else None,
-                                "under_price": o.get("price")
-                                if o.get("name") == "Under"
-                                else None,
+                                "line": o.get("point"),
+                                "over_price": o.get("price") if o.get("name") == "Over" else None,
+                                "under_price": o.get("price") if o.get("name") == "Under" else None,
                             }
                         )
 
