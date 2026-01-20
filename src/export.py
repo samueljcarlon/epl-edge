@@ -11,13 +11,12 @@ from src.db import connect, init_db
 def export_odds_json(db_path: str, out_path: str, limit: int = 2000) -> int:
     con = connect(db_path)
     init_db(con)
+
     cur = con.cursor()
 
-    # Latest snapshot per (fixture_id, bookmaker, market, line)
     rows = cur.execute(
         """
-        WITH ranked AS (
-          SELECT
+        SELECT
             o.captured_at_utc,
             o.fixture_id,
             f.commence_time_utc,
@@ -31,19 +30,11 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 2000) -> int:
             o.market,
             o.line,
             o.over_price,
-            o.under_price,
-            ROW_NUMBER() OVER (
-              PARTITION BY o.fixture_id, o.bookmaker, o.market, o.line
-              ORDER BY o.captured_at_utc DESC
-            ) AS rn
-          FROM odds_snapshots o
-          JOIN fixtures f ON f.fixture_id = o.fixture_id
-          WHERE o.market IN ('totals', 'alternate_totals')
-        )
-        SELECT *
-        FROM ranked
-        WHERE rn = 1
-        ORDER BY commence_time_utc ASC, fixture_id ASC, bookmaker ASC, market ASC, line ASC
+            o.under_price
+        FROM odds_snapshots o
+        JOIN fixtures f ON f.fixture_id = o.fixture_id
+        WHERE o.market IN ('totals', 'alternate_totals')
+        ORDER BY o.captured_at_utc DESC
         LIMIT ?
         """,
         (limit,),
