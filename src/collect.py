@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import time
 from datetime import datetime, timedelta, timezone
+from typing import Iterable
 
 import requests
 
@@ -12,43 +14,42 @@ from src.utils import utcnow_iso
 FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
-# /sports/{sport_key}/odds supports these (v4)
-ALLOWED_ODDS_MARKETS = {"h2h", "spreads", "totals", "outrights"}
+# Bulk odds endpoint supported markets (v4 /sports/{sport_key}/odds)
+BULK_ALLOWED_MARKETS = {"h2h", "spreads", "totals", "outrights"}
 
-# /sports/{sport_key}/events/{event_id}/odds supports these (for our use)
-ALLOWED_EVENT_MARKETS = {"alternate_totals", "totals", "h2h", "spreads"}
+# Event odds endpoint markets commonly supported (v4 /sports/{sport_key}/events/{event_id}/odds)
+# We care about alternate_totals for multiple goal lines.
+EVENT_ALLOWED_MARKETS = {"h2h", "spreads", "totals", "alternate_totals", "outrights"}
 
 
 def _norm(s: str) -> str:
     return (s or "").strip().lower()
 
 
-def sanitize_markets_for_odds_endpoint(markets: str) -> str:
+def _dedupe_keep_order(items: Iterable[str]) -> list[str]:
+    out: list[str] = []
+    seen = set()
+    for x in items:
+        if x and x not in seen:
+            out.append(x)
+            seen.add(x)
+    return out
+
+
+def sanitize_bulk_markets(markets: str) -> str:
     parts = [_norm(x) for x in (markets or "").split(",") if _norm(x)]
-    keep = [p for p in parts if p in ALLOWED_ODDS_MARKETS]
+    keep = [p for p in parts if p in BULK_ALLOWED_MARKETS]
     if not keep:
         return "totals"
-    out: list[str] = []
-    seen = set()
-    for k in keep:
-        if k not in seen:
-            out.append(k)
-            seen.add(k)
-    return ",".join(out)
+    return ",".join(_dedupe_keep_order(keep))
 
 
-def sanitize_markets_for_event_endpoint(markets: str) -> str:
+def sanitize_event_markets(markets: str) -> str:
     parts = [_norm(x) for x in (markets or "").split(",") if _norm(x)]
-    keep = [p for p in parts if p in ALLOWED_EVENT_MARKETS]
+    keep = [p for p in parts if p in EVENT_ALLOWED_MARKETS]
     if not keep:
         return "alternate_totals"
-    out: list[str] = []
-    seen = set()
-    for k in keep:
-        if k not in seen:
-            out.append(k)
-            seen.add(k)
-    return ",".join(out)
+    return ",".join(_dedupe_keep_order(keep))
 
 
 def fetch_pl_matches(fd_token: str, days_back: int, days_forward: int) -> dict:
@@ -81,7 +82,6 @@ def upsert_fixtures(con, matches_json: dict) -> int:
         full = score.get("fullTime") or {}
         hg = full.get("home")
         ag = full.get("away")
-
         rows.append((fixture_id, commence, matchday, status, home, away, hg, ag, now_iso))
 
     executemany(
@@ -107,7 +107,7 @@ def upsert_fixtures(con, matches_json: dict) -> int:
     return len(rows)
 
 
-def fetch_odds_list(
+def fetch_odds_bulk(
     odds_key: str,
     sport_key: str,
     regions: str,
@@ -115,13 +115,13 @@ def fetch_odds_list(
     odds_format: str,
     date_format: str,
 ) -> list[dict]:
-    markets_clean = sanitize_markets_for_odds_endpoint(markets)
+    markets = sanitize_bulk_markets(markets)
     r = requests.get(
         f"{ODDS_API_BASE}/sports/{sport_key}/odds",
         params={
             "apiKey": odds_key,
             "regions": regions,
-            "markets": markets_clean,
+            "markets": markets,
             "oddsFormat": odds_format,
             "dateFormat": date_format,
         },
@@ -140,13 +140,13 @@ def fetch_event_odds(
     odds_format: str,
     date_format: str,
 ) -> dict:
-    markets_clean = sanitize_markets_for_event_endpoint(markets)
+    markets = sanitize_event_markets(markets)
     r = requests.get(
         f"{ODDS_API_BASE}/sports/{sport_key}/events/{event_id}/odds",
         params={
             "apiKey": odds_key,
             "regions": regions,
-            "markets": markets_clean,
+            "markets": markets,
             "oddsFormat": odds_format,
             "dateFormat": date_format,
         },
@@ -156,7 +156,17 @@ def fetch_event_odds(
     return r.json()
 
 
-def _find_fixture_id(con, commence: str, home: str, away: str) -> str | None:
+def _fixture_id_from_event(con, ev: dict) -> str | None:
+    """
+    Map Odds API event -> our fixtures table.
+    We match by commence_time_utc + team names (lower).
+    """
+    commence = ev.get("commence_time")
+    home = ev.get("home_team")
+    away = ev.get("away_team")
+    if not (commence and home and away):
+        return None
+
     cur = con.cursor()
     got = cur.execute(
         """
@@ -173,104 +183,62 @@ def _find_fixture_id(con, commence: str, home: str, away: str) -> str | None:
     return got["fixture_id"]
 
 
-def _extract_totals_rows(fixture_id: str, bookmakers: list[dict], captured_at: str, market_key: str) -> list[tuple]:
-    rows: list[tuple] = []
+def store_totals_like_market(con, ev_or_events, captured_at: str, market_key: str) -> int:
+    """
+    Store totals-style markets (totals or alternate_totals) into odds_snapshots as:
+      over_price, under_price, line
+    """
+    if isinstance(ev_or_events, dict):
+        events = [ev_or_events]
+    else:
+        events = list(ev_or_events)
 
-    for bm in bookmakers:
-        bm_title = bm.get("title") or bm.get("key") or "unknown_book"
-
-        for mk in bm.get("markets", []):
-            if mk.get("key") != market_key:
-                continue
-
-            by_line: dict[float, dict[str, float]] = {}
-
-            for out in mk.get("outcomes", []):
-                point = out.get("point")
-                name = _norm(out.get("name"))
-                price = out.get("price")
-                if point is None or price is None:
-                    continue
-
-                try:
-                    line = float(point)
-                    pr = float(price)
-                except (TypeError, ValueError):
-                    continue
-
-                if line not in by_line:
-                    by_line[line] = {}
-                if name in ("over", "under"):
-                    by_line[line][name] = pr
-
-            for line, ou in by_line.items():
-                if "over" in ou and "under" in ou:
-                    rows.append(
-                        (
-                            captured_at,
-                            fixture_id,
-                            bm_title,
-                            market_key,
-                            line,
-                            ou["over"],
-                            ou["under"],
-                        )
-                    )
-
-    return rows
-
-
-def store_totals_from_odds_list(con, events: list[dict], captured_at: str) -> int:
-    all_rows: list[tuple] = []
+    rows = []
+    cur = con.cursor()
 
     for ev in events:
-        commence = ev.get("commence_time")
-        home = ev.get("home_team")
-        away = ev.get("away_team")
-        if not (commence and home and away):
-            continue
-
-        fixture_id = _find_fixture_id(con, commence, home, away)
+        fixture_id = _fixture_id_from_event(con, ev)
         if not fixture_id:
             continue
 
-        # odds list endpoint returns bookmakers list directly on the event object
-        all_rows.extend(_extract_totals_rows(fixture_id, ev.get("bookmakers", []), captured_at, "totals"))
+        for bm in ev.get("bookmakers", []):
+            bm_title = bm.get("title") or bm.get("key") or "unknown_book"
 
-    executemany(
-        con,
-        """
-        INSERT INTO odds_snapshots (
-          captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        all_rows,
-    )
-    return len(all_rows)
+            for mk in bm.get("markets", []):
+                if mk.get("key") != market_key:
+                    continue
 
+                # outcomes include Over/Under with "point" as the line
+                by_line: dict[float, dict[str, float]] = {}
 
-def store_alternate_totals_from_event(con, event_payload: dict, captured_at: str) -> int:
-    # event endpoint payload structure: has "commence_time", "home_team", "away_team", and "bookmakers"
-    commence = event_payload.get("commence_time")
-    home = event_payload.get("home_team")
-    away = event_payload.get("away_team")
-    if not (commence and home and away):
-        return 0
+                for out in mk.get("outcomes", []):
+                    point = out.get("point")
+                    name = _norm(out.get("name"))
+                    price = out.get("price")
+                    if point is None or price is None:
+                        continue
+                    try:
+                        ln = float(point)
+                        pr = float(price)
+                    except (TypeError, ValueError):
+                        continue
 
-    fixture_id = _find_fixture_id(con, commence, home, away)
-    if not fixture_id:
-        return 0
+                    if name in ("over", "under"):
+                        by_line.setdefault(ln, {})[name] = pr
 
-    rows = _extract_totals_rows(
-        fixture_id=fixture_id,
-        bookmakers=event_payload.get("bookmakers", []),
-        captured_at=captured_at,
-        market_key="alternate_totals",
-    )
-
-    if not rows:
-        return 0
+                for ln, ou in by_line.items():
+                    if "over" in ou and "under" in ou:
+                        rows.append(
+                            (
+                                captured_at,
+                                fixture_id,
+                                bm_title,
+                                market_key,
+                                ln,
+                                ou["over"],
+                                ou["under"],
+                            )
+                        )
 
     executemany(
         con,
@@ -288,57 +256,62 @@ def store_alternate_totals_from_event(con, event_payload: dict, captured_at: str
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--days-back", type=int, default=14)
-    p.add_argument("--days-forward", type=int, default=14)
+    p.add_argument("--days-forward", type=int, default=21)
+    p.add_argument("--alt-sleep", type=float, default=0.25, help="Seconds to sleep between event odds calls")
     args = p.parse_args()
 
     s = get_settings()
     con = connect(s.db_path)
     init_db(con)
 
+    # 1) Fixtures from football-data
     matches = fetch_pl_matches(s.football_data_token, args.days_back, args.days_forward)
     n_fix = upsert_fixtures(con, matches)
 
+    # 2) Bulk odds (fast) for main totals
     captured_at = utcnow_iso()
-
-    # 1) Standard odds list (mainstream)
-    events = fetch_odds_list(
+    bulk_events = fetch_odds_bulk(
         odds_key=s.odds_api_key,
         sport_key=s.odds_sport_key,
         regions=s.odds_regions,
-        markets=s.odds_markets,  # can include h2h,spreads,totals etc
+        markets=s.odds_markets,  # should include "totals" at least
         odds_format=s.odds_format,
         date_format=s.date_format,
     )
-    n_totals = store_totals_from_odds_list(con, events, captured_at)
 
-    # 2) Alternate totals (extra lines) using event endpoint
+    n_totals = store_totals_like_market(con, bulk_events, captured_at, "totals")
+
+    # 3) Alternate totals (slow) using per-event endpoint
     n_alt = 0
-    # event_id is in odds list response as "id" (The Odds API event id)
-    for ev in events:
-        ev_id = ev.get("id")
-        if not ev_id:
+    n_events = 0
+    for ev in bulk_events:
+        event_id = ev.get("id")
+        if not event_id:
             continue
 
+        n_events += 1
         try:
-            payload = fetch_event_odds(
+            ev_detail = fetch_event_odds(
                 odds_key=s.odds_api_key,
                 sport_key=s.odds_sport_key,
-                event_id=str(ev_id),
+                event_id=str(event_id),
                 regions=s.odds_regions,
                 markets="alternate_totals",
                 odds_format=s.odds_format,
                 date_format=s.date_format,
             )
-            n_alt += store_alternate_totals_from_event(con, payload, captured_at)
-        except requests.HTTPError:
-            # Some books/regions may not support alternates for some events.
-            # Skip quietly so the job doesn't die.
-            continue
+            # Event endpoint returns a single event object with bookmakers/markets
+            n_alt += store_totals_like_market(con, ev_detail, captured_at, "alternate_totals")
+        except requests.HTTPError as e:
+            # If a specific event has no alternates in your regions, ignore it
+            print(f"Alternate totals skipped for event {event_id}: {e}")
+        time.sleep(max(0.0, float(args.alt_sleep)))
 
     print(f"Upserted fixtures: {n_fix}")
     print(f"Stored totals snapshots: {n_totals}")
     print(f"Stored alternate_totals snapshots: {n_alt}")
-    print(f"Markets used (odds list): {sanitize_markets_for_odds_endpoint(s.odds_markets)}")
+    print(f"Events checked for alternates: {n_events}")
+    print(f"Bulk markets used: {sanitize_bulk_markets(s.odds_markets)}")
 
 
 if __name__ == "__main__":
