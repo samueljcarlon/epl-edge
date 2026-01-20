@@ -8,10 +8,9 @@ from pathlib import Path
 from src.db import connect, init_db
 
 
-def export_odds_json(db_path: str, out_path: str, limit: int = 2000) -> int:
+def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
     con = connect(db_path)
     init_db(con)
-
     cur = con.cursor()
 
     rows = cur.execute(
@@ -75,7 +74,7 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 2000) -> int:
 def main() -> None:
     db_path = os.environ.get("DB_PATH", "data/app.db")
     out_path = os.environ.get("OUT_JSON_PATH", "site/public/odds.json")
-    limit = int(os.environ.get("EXPORT_LIMIT", "2000"))
+    limit = int(os.environ.get("EXPORT_LIMIT", "5000"))
 
     n = export_odds_json(db_path=db_path, out_path=out_path, limit=limit)
     print(f"Exported {n} rows to {out_path}")
