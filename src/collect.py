@@ -1,206 +1,238 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timedelta, timezone
+import os
+import sqlite3
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
 
 import requests
 
-from src.db import connect, init_db, executemany
-from src.settings import get_settings
-from src.utils import utcnow_iso
+from src.db import connect, init_db
+
 
 FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 
-def fetch_pl_matches(fd_token: str, days_back: int, days_forward: int) -> dict:
-    today = datetime.now(timezone.utc).date()
-    date_from = (today - timedelta(days=days_back)).isoformat()
-    date_to = (today + timedelta(days=days_forward)).isoformat()
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
-    r = requests.get(
-        f"{FOOTBALL_DATA_BASE}/competitions/PL/matches",
-        headers={"X-Auth-Token": fd_token},
-        params={"dateFrom": date_from, "dateTo": date_to},
-        timeout=30,
-    )
+
+def fetch_fixtures(competition: str, token: str) -> List[Dict[str, Any]]:
+    url = f"{FOOTBALL_DATA_BASE}/competitions/{competition}/matches"
+    r = requests.get(url, headers={"X-Auth-Token": token}, timeout=30)
     r.raise_for_status()
-    return r.json()
+    data = r.json()
+    return data.get("matches", [])
 
 
-def upsert_fixtures(con, matches_json: dict) -> int:
-    rows = []
-    now_iso = utcnow_iso()
-
-    for m in matches_json.get("matches", []):
-        fixture_id = str(m["id"])
-        commence = m.get("utcDate")
-        status = m.get("status", "UNKNOWN")
+def upsert_fixtures(con: sqlite3.Connection, matches: List[Dict[str, Any]]) -> int:
+    cur = con.cursor()
+    n = 0
+    for m in matches:
+        fixture_id = str(m.get("id"))
+        utc_date = m.get("utcDate")  # already ISO Z
         matchday = m.get("matchday")
-        home = (m.get("homeTeam") or {}).get("name") or "UNKNOWN_HOME"
-        away = (m.get("awayTeam") or {}).get("name") or "UNKNOWN_AWAY"
-        score = m.get("score") or {}
-        full = (score.get("fullTime") or {})
-        hg = full.get("home")
-        ag = full.get("away")
-        rows.append((fixture_id, commence, matchday, status, home, away, hg, ag, now_iso))
+        status = m.get("status")
 
-    executemany(
-        con,
-        """
-        INSERT INTO fixtures (
-          fixture_id, commence_time_utc, matchweek, status, home_team, away_team,
-          home_goals, away_goals, last_updated_utc
+        home = (m.get("homeTeam") or {}).get("name")
+        away = (m.get("awayTeam") or {}).get("name")
+
+        score = (m.get("score") or {}).get("fullTime") or {}
+        home_goals = score.get("home")
+        away_goals = score.get("away")
+
+        cur.execute(
+            """
+            INSERT INTO fixtures (
+                fixture_id, commence_time_utc, matchweek, status,
+                home_team, away_team, home_goals, away_goals
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(fixture_id) DO UPDATE SET
+                commence_time_utc=excluded.commence_time_utc,
+                matchweek=excluded.matchweek,
+                status=excluded.status,
+                home_team=excluded.home_team,
+                away_team=excluded.away_team,
+                home_goals=excluded.home_goals,
+                away_goals=excluded.away_goals
+            """,
+            (fixture_id, utc_date, matchday, status, home, away, home_goals, away_goals),
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(fixture_id) DO UPDATE SET
-          commence_time_utc=excluded.commence_time_utc,
-          matchweek=excluded.matchweek,
-          status=excluded.status,
-          home_team=excluded.home_team,
-          away_team=excluded.away_team,
-          home_goals=excluded.home_goals,
-          away_goals=excluded.away_goals,
-          last_updated_utc=excluded.last_updated_utc
-        """,
-        rows,
-    )
-    return len(rows)
+        n += 1
+
+    con.commit()
+    return n
 
 
 def fetch_odds(
-    odds_key: str,
     sport_key: str,
+    api_key: str,
     regions: str,
     markets: str,
-    odds_format: str,
-    date_format: str,
-) -> list[dict]:
-    r = requests.get(
-        f"{ODDS_API_BASE}/sports/{sport_key}/odds",
-        params={
-            "apiKey": odds_key,
-            "regions": regions,
-            "markets": markets,
-            "oddsFormat": odds_format,
-            "dateFormat": date_format,
-        },
-        timeout=30,
-    )
+    odds_format: str = "decimal",
+    date_format: str = "iso",
+) -> List[Dict[str, Any]]:
+    """
+    The Odds API v4: /sports/{sport_key}/odds
+    markets can be comma-separated, for example: "totals,alternate_totals"
+    """
+    url = f"{ODDS_API_BASE}/sports/{sport_key}/odds"
+    params = {
+        "apiKey": api_key,
+        "regions": regions,
+        "markets": markets,
+        "oddsFormat": odds_format,
+        "dateFormat": date_format,
+    }
+    r = requests.get(url, params=params, timeout=30)
     r.raise_for_status()
     return r.json()
 
 
-def store_totals_all_lines(con, events: list[dict], captured_at: str) -> int:
+def _extract_totals_points(bookmaker_obj: Dict[str, Any], allowed_market_keys: set[str]) -> List[Dict[str, Any]]:
     """
-    Stores ALL totals lines found in the Odds API response for each bookmaker.
-    Each (fixture_id, bookmaker, market=totals, line) becomes one row with over/under prices.
+    Returns rows like:
+    { "bookmaker": "...", "market": "totals", "line": 2.5, "over": 1.9, "under": 1.9 }
+    Handles markets with outcomes containing name + price + point.
     """
+    out: List[Dict[str, Any]] = []
+
+    bm_name = bookmaker_obj.get("title") or bookmaker_obj.get("key")
+    markets = bookmaker_obj.get("markets") or []
+    for mk in markets:
+        mk_key = mk.get("key")
+        if mk_key not in allowed_market_keys:
+            continue
+
+        # Group outcomes by point so we can pair Over and Under
+        by_point: Dict[float, Dict[str, float]] = {}
+        for o in (mk.get("outcomes") or []):
+            name = o.get("name")
+            price = o.get("price")
+            point = o.get("point")
+
+            if name not in ("Over", "Under"):
+                continue
+            if price is None or point is None:
+                continue
+
+            try:
+                p = float(point)
+                pr = float(price)
+            except (TypeError, ValueError):
+                continue
+
+            by_point.setdefault(p, {})
+            by_point[p][name.lower()] = pr
+
+        for line, vals in by_point.items():
+            if "over" in vals and "under" in vals:
+                out.append(
+                    {
+                        "bookmaker": bm_name,
+                        "market": mk_key,
+                        "line": line,
+                        "over_price": vals["over"],
+                        "under_price": vals["under"],
+                    }
+                )
+
+    return out
+
+
+def store_odds_snapshots(
+    con: sqlite3.Connection,
+    odds_payload: List[Dict[str, Any]],
+    allowed_market_keys: Optional[List[str]] = None,
+) -> int:
+    """
+    Stores ALL lines (points) for totals-style markets.
+    Default allowed markets: totals + alternate_totals.
+    """
+    if allowed_market_keys is None:
+        allowed_market_keys = ["totals", "alternate_totals"]
+
+    allowed = set(allowed_market_keys)
     cur = con.cursor()
-    rows = []
+    captured_at = utc_now_iso()
 
-    def norm(s: str) -> str:
-        return (s or "").strip().lower()
+    inserted = 0
 
-    for ev in events:
-        commence = ev.get("commence_time")
-        home = ev.get("home_team")
-        away = ev.get("away_team")
-        if not (commence and home and away):
+    for event in odds_payload:
+        fixture_id = str(event.get("id") or "")
+        if not fixture_id:
             continue
 
-        got = cur.execute(
-            """
-            SELECT fixture_id FROM fixtures
-            WHERE commence_time_utc = ?
-              AND lower(home_team) = ?
-              AND lower(away_team) = ?
-            LIMIT 1
-            """,
-            (commence, norm(home), norm(away)),
-        ).fetchone()
+        bookmakers = event.get("bookmakers") or []
+        for bm in bookmakers:
+            rows = _extract_totals_points(bm, allowed)
+            for row in rows:
+                cur.execute(
+                    """
+                    INSERT INTO odds_snapshots (
+                        captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        captured_at,
+                        fixture_id,
+                        row["bookmaker"],
+                        row["market"],
+                        row["line"],
+                        row["over_price"],
+                        row["under_price"],
+                    ),
+                )
+                inserted += 1
 
-        if not got:
-            continue
-
-        fixture_id = got["fixture_id"]
-
-        for bm in ev.get("bookmakers", []):
-            bm_title = bm.get("title") or bm.get("key") or "unknown_book"
-
-            for mk in bm.get("markets", []):
-                if mk.get("key") != "totals":
-                    continue
-
-                # Build map: line -> {"over": price, "under": price}
-                line_map: dict[float, dict[str, float]] = {}
-
-                for out in mk.get("outcomes", []):
-                    point = out.get("point")
-                    name = norm(out.get("name"))
-                    price = out.get("price")
-                    if point is None or price is None:
-                        continue
-
-                    try:
-                        line = float(point)
-                        pr = float(price)
-                    except Exception:
-                        continue
-
-                    if line not in line_map:
-                        line_map[line] = {}
-                    if name == "over":
-                        line_map[line]["over"] = pr
-                    elif name == "under":
-                        line_map[line]["under"] = pr
-
-                for line, d in line_map.items():
-                    over_price = d.get("over")
-                    under_price = d.get("under")
-                    if over_price is None and under_price is None:
-                        continue
-                    rows.append((captured_at, fixture_id, bm_title, "totals", line, over_price, under_price))
-
-    executemany(
-        con,
-        """
-        INSERT INTO odds_snapshots (
-          captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        rows,
-    )
-
-    return len(rows)
+    con.commit()
+    return inserted
 
 
 def main() -> None:
-    p = argparse.ArgumentParser()
-    p.add_argument("--days-back", type=int, default=14)
-    p.add_argument("--days-forward", type=int, default=14)
-    args = p.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--db", default=os.environ.get("DB_PATH", "data/app.db"))
+    parser.add_argument("--competition", default=os.environ.get("COMPETITION", "PL"))
+    parser.add_argument("--sport-key", default=os.environ.get("ODDS_SPORT_KEY", "soccer_epl"))
+    parser.add_argument("--regions", default=os.environ.get("ODDS_REGIONS", "uk,eu,us,au"))
+    parser.add_argument(
+        "--markets",
+        default=os.environ.get("ODDS_MARKETS", "totals,alternate_totals"),
+        help="Comma separated Odds API markets, e.g. totals,alternate_totals",
+    )
+    args = parser.parse_args()
 
-    s = get_settings()
-    con = connect(s.db_path)
+    football_token = os.environ.get("FOOTBALL_DATA_TOKEN")
+    odds_key = os.environ.get("ODDS_API_KEY") or os.environ.get("ODDS_API_KEY".replace("ODDS_API_KEY", "ODDS_API_KEY"))
+
+    # Your workflow uses ODDS_API_KEY already, keep that name.
+    odds_key = os.environ.get("ODDS_API_KEY") or os.environ.get("ODDS_API_KEY".replace("ODDS_API_KEY", "ODDS_API_KEY"))
+    odds_key = os.environ.get("ODDS_API_KEY")  # final truth
+
+    if not football_token:
+        raise SystemExit("Missing FOOTBALL_DATA_TOKEN")
+    if not odds_key:
+        raise SystemExit("Missing ODDS_API_KEY")
+
+    con = connect(args.db)
     init_db(con)
 
-    matches = fetch_pl_matches(s.football_data_token, args.days_back, args.days_forward)
-    n_fix = upsert_fixtures(con, matches)
+    matches = fetch_fixtures(args.competition, football_token)
+    n_fx = upsert_fixtures(con, matches)
 
-    captured_at = utcnow_iso()
-    events = fetch_odds(
-        odds_key=s.odds_api_key,
-        sport_key=s.odds_sport_key,
-        regions=s.odds_regions,
-        markets=s.odds_markets,  # keep this as "totals" for now
-        odds_format=s.odds_format,
-        date_format=s.date_format,
+    odds_payload = fetch_odds(
+        sport_key=args.sport_key,
+        api_key=odds_key,
+        regions=args.regions,
+        markets=args.markets,
     )
-    n_odds = store_totals_all_lines(con, events, captured_at)
+    n_odds = store_odds_snapshots(con, odds_payload)
 
-    print(f"Upserted fixtures: {n_fix}")
+    print(f"Upserted fixtures: {n_fx}")
     print(f"Stored odds snapshots: {n_odds}")
 
 
