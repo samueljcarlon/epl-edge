@@ -11,7 +11,7 @@ class Settings:
     db_path: str = "data/app.db"
 
     odds_sport_key: str = "soccer_epl"
-    odds_regions: str = "uk,eu"
+    odds_regions: str = "uk,eu,us,us2"
     odds_markets: str = "totals"
     odds_format: str = "decimal"
     date_format: str = "iso"
@@ -25,3 +25,4 @@ def get_settings() -> Settings:
     if not oa or oa.startswith("YOUR_"):
         raise RuntimeError("Missing ODDS_API_KEY")
     return Settings(football_data_token=fd, odds_api_key=oa)
+
