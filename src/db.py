@@ -6,7 +6,7 @@ from typing import Iterable, Mapping, Any
 
 
 def connect(db_path: str) -> sqlite3.Connection:
-    # Make sure the parent folder exists, avoids SQLite creating a new empty DB in a weird place
+    # Ensure folder exists so SQLite doesn't create a new empty DB somewhere dumb
     p = Path(db_path)
     p.parent.mkdir(parents=True, exist_ok=True)
 
