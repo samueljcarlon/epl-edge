@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: collector-publish-main
+  cancel-in-progress: true
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -18,11 +22,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync main (reset to origin)
+      - name: Sync main (before generating files)
         run: |
-          git fetch origin main
-          git checkout main
-          git reset --hard origin/main
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -47,8 +51,10 @@ jobs:
 
       - name: Commit outputs
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add site/public data/app.db || true
+          git add data/app.db site/public/odds.json
           git commit -m "Update data + site" || echo "No changes"
-          git push origin main
+
+      - name: Push
+        run: |
+          git pull --rebase origin main
+          git push
