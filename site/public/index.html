@@ -5,504 +5,586 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SportsSignal</title>
   <style>
-    :root {
-      --bg: #071018;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.65);
-      --border: rgba(255,255,255,0.10);
-      --pill: rgba(255,255,255,0.07);
-      --shadow: 0 10px 40px rgba(0,0,0,0.40);
-      --radius: 18px;
-    }
-
-    * { box-sizing: border-box; }
+    :root { color-scheme: dark; }
     body {
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(900px 500px at 70% 0%, rgba(0, 180, 255, 0.18), transparent 60%),
-                  radial-gradient(800px 400px at 15% 10%, rgba(0, 255, 160, 0.12), transparent 55%),
-                  var(--bg);
-      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 80% 0%, rgba(22,126,111,0.25), transparent 55%),
+                  radial-gradient(900px 700px at 20% 10%, rgba(55,88,168,0.18), transparent 55%),
+                  #0b0f17;
+      color: #e7eaf0;
     }
+    header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid #1a2233;
+      position: sticky;
+      top: 0;
+      background: rgba(11,15,23,0.88);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+    }
+    h1 { margin: 0; font-size: 18px; letter-spacing: 0.2px; }
+    .sub { margin-top: 6px; color:#9aa7bd; font-size: 13px; }
 
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 18px 80px; }
+    main { padding: 16px 18px 30px; max-width: 1100px; margin: 0 auto; }
 
-    h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: 0.2px; }
-    .sub { color: var(--muted); margin: 0 0 18px; font-size: 13px; }
-
-    .controls {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: var(--shadow);
+    .panel {
+      border: 1px solid #1a2233;
+      background: rgba(15,22,38,0.55);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr 0.8fr 0.8fr;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
       gap: 10px;
-      align-items: end;
     }
+    .field { display:flex; flex-direction:column; gap:6px; }
+    label { font-size: 12px; color:#9aa7bd; }
 
-    label { display: block; font-size: 12px; color: var(--muted); margin: 0 0 6px; }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.25);
-      color: var(--text);
+    input, select {
+      padding: 10px 10px;
+      border-radius: 10px;
+      border: 1px solid #1a2233;
+      background:#0f1626;
+      color:#e7eaf0;
       outline: none;
     }
+    input:focus, select:focus { border-color:#2a3a5f; }
 
-    button {
-      cursor: pointer;
-      background: rgba(255,255,255,0.07);
-      font-weight: 600;
-    }
-    button:hover { background: rgba(255,255,255,0.10); }
-
-    .row2 {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      align-items: center;
+    .row {
+      display:flex;
+      gap:10px;
+      align-items:center;
       flex-wrap: wrap;
-    }
-
-    .chip {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--pill);
-      border: 1px solid var(--border);
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .table {
-      margin-top: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .thead, .trow {
-      display: grid;
-      grid-template-columns: 3fr 1.2fr 1fr 0.9fr 1.4fr;
-      gap: 0;
-      align-items: center;
-    }
-
-    .thead {
-      background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      font-size: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .thead div, .trow div {
-      padding: 12px 14px;
-      border-right: 1px solid rgba(255,255,255,0.06);
-    }
-    .thead div:last-child, .trow div:last-child { border-right: none; }
-
-    .trow {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .trow:last-child { border-bottom: none; }
-
-    .fixture {
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 1.2;
-    }
-    .meta {
-      margin-top: 4px;
-      font-size: 12px;
-      color: var(--muted);
+      margin-top: 10px;
     }
 
     .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 12px;
+      color:#9aa7bd;
+      border: 1px solid #1a2233;
+      background:#0f1626;
       padding: 6px 10px;
       border-radius: 999px;
-      background: var(--pill);
-      border: 1px solid var(--border);
-      font-size: 12px;
-      white-space: nowrap;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    .prices {
+    .dot { width: 9px; height: 9px; border-radius: 99px; display:inline-block; }
+    .dot.green { background: #21c55d; }
+    .dot.amber { background: #fbbf24; }
+    .dot.red { background: #ef4444; }
+
+    button {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #1a2233;
+      background:#15213a;
+      color:#e7eaf0;
+      cursor:pointer;
+    }
+    button:hover { background:#1a2b4d; }
+
+    .toggle {
+      display:flex;
+      gap:8px;
+      align-items:center;
+      user-select:none;
+      cursor:pointer;
+    }
+    .toggle input { transform: translateY(1px); }
+
+    .list {
+      margin-top: 14px;
       display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card {
+      border: 1px solid #1a2233;
+      background: rgba(15,22,38,0.45);
+      border-radius: 16px;
+      padding: 12px 12px;
+      display: grid;
+      grid-template-columns: 1.7fr 0.8fr 0.7fr 0.6fr 0.9fr;
       gap: 10px;
       align-items: center;
-      justify-content: flex-start;
-      flex-wrap: wrap;
+    }
+
+    .fixtureTitle { font-weight: 700; font-size: 13px; color:#f4f6fb; }
+    .fixtureMeta { margin-top: 4px; font-size: 12px; color:#9aa7bd; }
+
+    .badge {
+      justify-self: start;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #1a2233;
+      background: rgba(11,15,23,0.35);
+      color:#e7eaf0;
     }
 
     .priceBox {
-      min-width: 105px;
-      padding: 8px 10px;
+      justify-self: end;
+      width: 140px;
+      border: 1px solid #1a2233;
+      background: rgba(11,15,23,0.35);
       border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.22);
+      padding: 10px 10px;
+      display:flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
     }
-
-    .priceTop { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-    .priceVal { font-size: 14px; font-weight: 800; margin-top: 3px; }
-
-    .dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.20);
-      display: inline-block;
-    }
-    .dot.green { background: rgba(0,255,140,0.70); }
-    .dot.red { background: rgba(255,70,70,0.75); }
-    .dot.amber { background: rgba(255,200,0,0.75); }
+    .priceLabel { font-size: 12px; color:#9aa7bd; display:flex; gap:8px; align-items:center; }
+    .priceValue { font-size: 14px; font-weight: 800; letter-spacing: 0.2px; }
 
     .empty {
-      padding: 16px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 14px;
+      border: 1px dashed #2a3a5f;
+      border-radius: 14px;
+      color:#9aa7bd;
+      margin-top: 12px;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 980px){
       .grid { grid-template-columns: 1fr 1fr; }
-      .thead, .trow { grid-template-columns: 2fr 1fr; }
-      .thead div:nth-child(3),
-      .thead div:nth-child(4),
-      .thead div:nth-child(5),
-      .trow div:nth-child(3),
-      .trow div:nth-child(4),
-      .trow div:nth-child(5) { display: none; }
+      .card { grid-template-columns: 1fr; gap: 8px; }
+      .priceBox { width: auto; justify-self: start; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <header>
     <h1>SportsSignal</h1>
-    <p class="sub">Odds + fixtures updated automatically. Filter, sort, export. Now with value lights.</p>
+    <div class="sub">Odds + fixtures updated automatically. Filter, sort, export.</div>
+  </header>
 
-    <div class="controls">
+  <main>
+    <div class="panel">
       <div class="grid">
-        <div>
+        <div class="field">
           <label>Search team</label>
           <input id="q" placeholder="e.g. Arsenal, Spurs, City" />
         </div>
 
-        <div>
+        <div class="field">
           <label>Bookmaker</label>
-          <select id="bookmaker"></select>
+          <select id="bookmaker"><option value="">All</option></select>
         </div>
 
-        <div>
+        <div class="field">
           <label>Market</label>
-          <select id="market"></select>
+          <select id="market"><option value="">All</option></select>
         </div>
 
-        <div>
+        <div class="field">
           <label>Line</label>
-          <select id="line"></select>
+          <select id="line"><option value="">All</option></select>
         </div>
 
-        <div>
+        <div class="field">
           <label>Sort</label>
           <select id="sort">
             <option value="kickoff_asc">Kickoff (soonest)</option>
             <option value="kickoff_desc">Kickoff (latest)</option>
-            <option value="value_desc">Value (best first)</option>
+            <option value="edge_desc">Value (best first)</option>
+            <option value="over_desc">Over price (high)</option>
+            <option value="under_desc">Under price (high)</option>
           </select>
         </div>
       </div>
 
-      <div class="row2">
-        <span class="chip" id="status">Status: Loading</span>
-        <button id="refreshBtn" style="width:auto">Refresh</button>
-        <button id="downloadBtn" style="width:auto">Download JSON</button>
+      <div class="row">
+        <span class="pill" id="status">Loading…</span>
+        <button id="refresh">Refresh</button>
+        <button id="download">Download JSON</button>
 
-        <span class="chip">Value threshold:
-          <strong id="thrLabel">3%</strong>
-        </span>
-        <input id="thr" type="range" min="0" max="10" step="0.5" value="3" style="width:240px" />
+        <span class="pill" id="updated"></span>
+        <span class="pill" id="count"></span>
 
-        <span class="chip" id="countChip">Rows: 0</span>
-        <span class="chip" id="updatedChip">Updated: -</span>
+        <label class="toggle pill" title="Grouped shows best prices per fixture. All shows every bookmaker row.">
+          <input type="checkbox" id="rawMode" />
+          <span>View: all bookmakers</span>
+        </label>
+
+        <label class="toggle pill" title="Only show green value bets.">
+          <input type="checkbox" id="onlyGreen" />
+          <span>Only green</span>
+        </label>
       </div>
     </div>
 
-    <div class="table">
-      <div class="thead">
-        <div>Fixture</div>
-        <div>Bookmaker</div>
-        <div>Market</div>
-        <div>Line</div>
-        <div>Prices</div>
-      </div>
-      <div id="rows"></div>
-      <div id="empty" class="empty" style="display:none"></div>
-    </div>
-  </div>
+    <div id="content" class="list"></div>
+  </main>
 
-  <script>
-    const els = {
-      q: document.getElementById('q'),
-      bookmaker: document.getElementById('bookmaker'),
-      market: document.getElementById('market'),
-      line: document.getElementById('line'),
-      sort: document.getElementById('sort'),
-      rows: document.getElementById('rows'),
-      empty: document.getElementById('empty'),
-      status: document.getElementById('status'),
-      countChip: document.getElementById('countChip'),
-      updatedChip: document.getElementById('updatedChip'),
-      refreshBtn: document.getElementById('refreshBtn'),
-      downloadBtn: document.getElementById('downloadBtn'),
-      thr: document.getElementById('thr'),
-      thrLabel: document.getElementById('thrLabel'),
-    };
+<script>
+  const els = {
+    q: document.getElementById('q'),
+    bookmaker: document.getElementById('bookmaker'),
+    market: document.getElementById('market'),
+    line: document.getElementById('line'),
+    sort: document.getElementById('sort'),
+    rawMode: document.getElementById('rawMode'),
+    onlyGreen: document.getElementById('onlyGreen'),
+    status: document.getElementById('status'),
+    updated: document.getElementById('updated'),
+    count: document.getElementById('count'),
+    content: document.getElementById('content'),
+    refresh: document.getElementById('refresh'),
+    download: document.getElementById('download'),
+  };
 
-    let RAW = [];
-    let META = { generated_at_utc: null };
+  let RAW = [];
+  let META = { generated_at_utc: null };
 
-    function uniq(arr) {
-      return Array.from(new Set(arr)).filter(Boolean).sort((a,b) => String(a).localeCompare(String(b)));
-    }
+  function norm(s){ return (s ?? '').toString().trim().toLowerCase(); }
+  function escapeHtml(s){
+    return (s ?? '').toString()
+      .replaceAll('&','&amp;')
+      .replaceAll('<','&lt;')
+      .replaceAll('>','&gt;')
+      .replaceAll('"','&quot;')
+      .replaceAll("'","&#039;");
+  }
 
-    function parseISO(s) {
-      const d = new Date(s);
-      return isNaN(d.getTime()) ? null : d;
-    }
+  function uniq(arr){
+    return [...new Set(arr.filter(v => v !== null && v !== undefined && v !== '').map(v => v.toString()))];
+  }
 
-    function fmtKickoff(iso) {
-      const d = parseISO(iso);
-      if (!d) return '-';
-      const dd = d.toLocaleString(undefined, { year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit' });
-      return dd.replace(',', '');
-    }
+  function parseTime(x){
+    const t = Date.parse(x);
+    return Number.isFinite(t) ? t : null;
+  }
 
-    function setSelectOptions(select, options, allLabel = 'All') {
-      select.innerHTML = '';
-      const optAll = document.createElement('option');
-      optAll.value = '';
-      optAll.textContent = allLabel;
-      select.appendChild(optAll);
+  function kickoff(r){ return r.commence_time_utc ?? r.commence_time ?? r.kickoff_utc ?? ''; }
+  function fixtureId(r){ return r.fixture_id ?? r.fixtureId ?? r.id ?? ''; }
+  function home(r){ return r.home_team ?? r.homeTeam ?? ''; }
+  function away(r){ return r.away_team ?? r.awayTeam ?? ''; }
+  function bookmaker(r){ return r.bookmaker ?? r.book ?? ''; }
+  function market(r){ return r.market ?? ''; }
+  function line(r){
+    const v = r.line ?? r.total ?? '';
+    if (v === null || v === undefined || v === '') return '';
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toString() : v.toString();
+  }
+  function over(r){ return r.over_price ?? r.over ?? null; }
+  function under(r){ return r.under_price ?? r.under ?? null; }
 
-      for (const o of options) {
-        const opt = document.createElement('option');
-        opt.value = o;
-        opt.textContent = o;
-        select.appendChild(opt);
+  function dotClassFromEdge(edge){
+    if (edge === null || edge === undefined) return 'amber';
+    if (edge >= 0.03) return 'green';
+    if (edge <= -0.03) return 'red';
+    return 'amber';
+  }
+
+  // consensus fair odds for a selection within a group:
+  // fair_prob = average(1/price), fair_odds = 1/fair_prob
+  function fairOddsFromPrices(prices){
+    const probs = prices
+      .map(p => Number(p))
+      .filter(p => Number.isFinite(p) && p > 1.0001)
+      .map(p => 1 / p);
+    if (!probs.length) return null;
+    const avgProb = probs.reduce((a,b)=>a+b,0) / probs.length;
+    if (!Number.isFinite(avgProb) || avgProb <= 0) return null;
+    return 1 / avgProb;
+  }
+
+  function buildBookmakerOptions(rows){
+    const bms = uniq(rows.map(bookmaker)).sort((a,b)=>a.localeCompare(b));
+    els.bookmaker.innerHTML = `<option value="">All</option>` + bms.map(x => `<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`).join('');
+  }
+
+  function buildMarketOptions(rows){
+    const mks = uniq(rows.map(market)).sort((a,b)=>a.localeCompare(b));
+    els.market.innerHTML = `<option value="">All</option>` + mks.map(x => `<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`).join('');
+  }
+
+  function buildLineOptions(rows){
+    const mk = norm(els.market.value);
+    let subset = rows;
+    if (mk) subset = rows.filter(r => norm(market(r)) === mk);
+
+    const lines = uniq(subset.map(line))
+      .map(x => x.toString())
+      .sort((a,b) => (Number(a) || 0) - (Number(b) || 0));
+
+    const current = els.line.value;
+    els.line.innerHTML = `<option value="">All</option>` + lines.map(x => `<option value="${escapeHtml(x)}">${escapeHtml(x)}</option>`).join('');
+
+    // keep current selection if it still exists
+    if (current && lines.includes(current)) els.line.value = current;
+    else if (current) els.line.value = '';
+  }
+
+  function groupBest(rows){
+    // group key: fixture + market + line
+    const map = new Map();
+    for (const r of rows){
+      const k = `${fixtureId(r)}|${market(r)}|${line(r)}`;
+      if (!map.has(k)){
+        map.set(k, {
+          key: k,
+          fixture_id: fixtureId(r),
+          kickoff: kickoff(r),
+          home: home(r),
+          away: away(r),
+          market: market(r),
+          line: line(r),
+          rows: []
+        });
       }
+      map.get(k).rows.push(r);
     }
 
-    function buildConsensus(items) {
-      // consensus key: fixture|market|line
-      // store avg over and avg under
-      const map = new Map();
+    const grouped = [];
+    for (const g of map.values()){
+      const overs = g.rows.map(over).filter(x => Number.isFinite(Number(x)));
+      const unders = g.rows.map(under).filter(x => Number.isFinite(Number(x)));
 
-      for (const it of items) {
-        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
-        if (!map.has(key)) map.set(key, { over: [], under: [] });
-        const v = map.get(key);
-        if (it.over_price != null) v.over.push(Number(it.over_price));
-        if (it.under_price != null) v.under.push(Number(it.under_price));
+      const fairOver = fairOddsFromPrices(overs);
+      const fairUnder = fairOddsFromPrices(unders);
+
+      // best prices (highest odds)
+      let bestOver = null;
+      let bestUnder = null;
+
+      for (const r of g.rows){
+        const o = Number(over(r));
+        const u = Number(under(r));
+        if (Number.isFinite(o)){
+          if (!bestOver || o > bestOver.price) bestOver = { price: o, bookmaker: bookmaker(r) };
+        }
+        if (Number.isFinite(u)){
+          if (!bestUnder || u > bestUnder.price) bestUnder = { price: u, bookmaker: bookmaker(r) };
+        }
       }
 
-      const out = new Map();
-      for (const [k, v] of map.entries()) {
-        const avg = (arr) => arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : null;
-        out.set(k, { over_avg: avg(v.over), under_avg: avg(v.under) });
-      }
-      return out;
+      const overEdge = (bestOver && fairOver) ? (bestOver.price - fairOver) / fairOver : null;
+      const underEdge = (bestUnder && fairUnder) ? (bestUnder.price - fairUnder) / fairUnder : null;
+
+      grouped.push({
+        ...g,
+        bestOver,
+        bestUnder,
+        fairOver,
+        fairUnder,
+        overEdge,
+        underEdge,
+        bestEdge: Math.max(overEdge ?? -Infinity, underEdge ?? -Infinity)
+      });
     }
+    return grouped;
+  }
 
-    function valueDot(price, avg, thrPct) {
-      if (price == null || avg == null) return { cls: '', edge: 0 };
-      const edge = (Number(price) / Number(avg)) - 1; // + means better price than avg
-      const thr = thrPct / 100;
+  function apply(){
+    const q = norm(els.q.value);
+    const bm = norm(els.bookmaker.value);
+    const mk = norm(els.market.value);
+    const ln = els.line.value ? els.line.value.toString() : '';
+    const rawMode = els.rawMode.checked;
+    const onlyGreen = els.onlyGreen.checked;
 
-      if (edge >= thr) return { cls: 'green', edge };
-      if (edge <= -thr) return { cls: 'red', edge };
-      return { cls: 'amber', edge };
-    }
-
-    function apply() {
-      const q = (els.q.value || '').trim().toLowerCase();
-      const bookmaker = els.bookmaker.value;
-      const market = els.market.value;
-      const line = els.line.value;
-      const sort = els.sort.value;
-      const thrPct = Number(els.thr.value || 0);
-
-      els.thrLabel.textContent = `${thrPct}%`;
-
-      let items = RAW.slice();
-
-      if (q) {
-        items = items.filter(it =>
-          (it.home_team || '').toLowerCase().includes(q) ||
-          (it.away_team || '').toLowerCase().includes(q)
-        );
-      }
-      if (bookmaker) items = items.filter(it => it.bookmaker === bookmaker);
-      if (market) items = items.filter(it => it.market === market);
-      if (line) items = items.filter(it => String(it.line) === String(line));
-
-      const consensus = buildConsensus(items);
-
-      // compute a "best edge" for sorting
-      for (const it of items) {
-        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
-        const c = consensus.get(key) || {};
-        const dOver = valueDot(it.over_price, c.over_avg, thrPct);
-        const dUnder = valueDot(it.under_price, c.under_avg, thrPct);
-        it._bestEdge = Math.max(dOver.edge || 0, dUnder.edge || 0);
-      }
-
-      if (sort === 'kickoff_asc') {
-        items.sort((a,b) => (a.commence_time_utc || '').localeCompare(b.commence_time_utc || ''));
-      } else if (sort === 'kickoff_desc') {
-        items.sort((a,b) => (b.commence_time_utc || '').localeCompare(a.commence_time_utc || ''));
-      } else if (sort === 'value_desc') {
-        items.sort((a,b) => (b._bestEdge || 0) - (a._bestEdge || 0));
-      }
-
-      render(items, consensus, thrPct);
-    }
-
-    function render(items, consensus, thrPct) {
-      els.rows.innerHTML = '';
-      els.countChip.textContent = `Rows: ${items.length}`;
-
-      if (!items.length) {
-        els.empty.style.display = '';
-        els.empty.textContent = 'No rows match your filters. Your feed might still be warming up.';
-        return;
-      }
-      els.empty.style.display = 'none';
-
-      for (const it of items) {
-        const key = `${it.fixture_id}|${it.market}|${Number(it.line)}`;
-        const c = consensus.get(key) || {};
-        const dOver = valueDot(it.over_price, c.over_avg, thrPct);
-        const dUnder = valueDot(it.under_price, c.under_avg, thrPct);
-
-        const row = document.createElement('div');
-        row.className = 'trow';
-
-        const fixture = document.createElement('div');
-        fixture.innerHTML = `
-          <div class="fixture">${it.home_team} vs ${it.away_team}</div>
-          <div class="meta">Kickoff: ${fmtKickoff(it.commence_time_utc)} · MW ${it.matchweek ?? '-'} · ${it.status ?? '-'}</div>
-        `;
-
-        const bm = document.createElement('div');
-        bm.innerHTML = `<span class="pill">${it.bookmaker}</span>`;
-
-        const mk = document.createElement('div');
-        mk.innerHTML = `<span class="pill">${it.market}</span>`;
-
-        const ln = document.createElement('div');
-        ln.innerHTML = `<span class="pill">${it.line}</span>`;
-
-        const prices = document.createElement('div');
-        prices.className = 'prices';
-
-        const overBox = document.createElement('div');
-        overBox.className = 'priceBox';
-        overBox.innerHTML = `
-          <div class="priceTop"><span class="dot ${dOver.cls}"></span> Over</div>
-          <div class="priceVal">${it.over_price ?? '-'}</div>
-        `;
-
-        const underBox = document.createElement('div');
-        underBox.className = 'priceBox';
-        underBox.innerHTML = `
-          <div class="priceTop"><span class="dot ${dUnder.cls}"></span> Under</div>
-          <div class="priceVal">${it.under_price ?? '-'}</div>
-        `;
-
-        prices.appendChild(overBox);
-        prices.appendChild(underBox);
-
-        row.appendChild(fixture);
-        row.appendChild(bm);
-        row.appendChild(mk);
-        row.appendChild(ln);
-        row.appendChild(prices);
-
-        els.rows.appendChild(row);
-      }
-    }
-
-    function rebuildDropdowns() {
-      setSelectOptions(els.bookmaker, uniq(RAW.map(x => x.bookmaker)), 'All');
-      setSelectOptions(els.market, uniq(RAW.map(x => x.market)), 'All');
-
-      // line depends on market selection
-      const mk = els.market.value;
-      const lines = uniq(RAW
-        .filter(x => !mk || x.market === mk)
-        .map(x => String(x.line))
-      );
-      setSelectOptions(els.line, lines, 'All');
-    }
-
-    async function load() {
-      els.status.textContent = 'Status: Loading';
-      try {
-        const res = await fetch('./odds.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-
-        META = data;
-        RAW = Array.isArray(data.items) ? data.items : [];
-        els.status.textContent = 'Status: Loaded';
-
-        const d = data.generated_at_utc ? new Date(data.generated_at_utc) : null;
-        els.updatedChip.textContent = d && !isNaN(d.getTime())
-          ? `Updated: ${d.toLocaleString()}`
-          : 'Updated: -';
-
-        rebuildDropdowns();
-        apply();
-      } catch (err) {
-        els.status.textContent = 'Status: Failed to load';
-        els.rows.innerHTML = '';
-        els.empty.style.display = '';
-        els.empty.textContent = 'Failed to load odds.json. If this is your first deploy, give it a minute then refresh.';
-      }
-    }
-
-    els.q.addEventListener('input', apply);
-    els.bookmaker.addEventListener('change', apply);
-    els.market.addEventListener('change', () => { rebuildDropdowns(); apply(); });
-    els.line.addEventListener('change', apply);
-    els.sort.addEventListener('change', apply);
-    els.thr.addEventListener('input', apply);
-
-    els.refreshBtn.addEventListener('click', load);
-
-    els.downloadBtn.addEventListener('click', () => {
-      const a = document.createElement('a');
-      a.href = './odds.json';
-      a.download = 'odds.json';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    let rows = RAW.filter(r => {
+      const okQ = !q || norm(home(r)).includes(q) || norm(away(r)).includes(q);
+      const okBm = !bm || norm(bookmaker(r)) === bm;
+      const okMk = !mk || norm(market(r)) === mk;
+      const okLn = !ln || (line(r) === ln);
+      return okQ && okBm && okMk && okLn;
     });
 
-    load();
-  </script>
+    const sort = els.sort.value;
+
+    if (rawMode){
+      // raw view: sort on row values
+      rows.sort((a,b) => {
+        const ta = parseTime(kickoff(a)) ?? 0;
+        const tb = parseTime(kickoff(b)) ?? 0;
+        if (sort === 'kickoff_asc') return ta - tb;
+        if (sort === 'kickoff_desc') return tb - ta;
+        if (sort === 'over_desc') return (Number(over(b))||-Infinity) - (Number(over(a))||-Infinity);
+        if (sort === 'under_desc') return (Number(under(b))||-Infinity) - (Number(under(a))||-Infinity);
+        return 0;
+      });
+
+      renderRaw(rows);
+      return;
+    }
+
+    // grouped best view
+    let grouped = groupBest(rows);
+
+    if (onlyGreen){
+      grouped = grouped.filter(g => {
+        const overIsGreen = dotClassFromEdge(g.overEdge) === 'green';
+        const underIsGreen = dotClassFromEdge(g.underEdge) === 'green';
+        return overIsGreen || underIsGreen;
+      });
+    }
+
+    grouped.sort((a,b) => {
+      const ta = parseTime(a.kickoff) ?? 0;
+      const tb = parseTime(b.kickoff) ?? 0;
+      if (sort === 'kickoff_asc') return ta - tb;
+      if (sort === 'kickoff_desc') return tb - ta;
+      if (sort === 'edge_desc') return (b.bestEdge ?? -Infinity) - (a.bestEdge ?? -Infinity);
+      if (sort === 'over_desc') return (b.bestOver?.price ?? -Infinity) - (a.bestOver?.price ?? -Infinity);
+      if (sort === 'under_desc') return (b.bestUnder?.price ?? -Infinity) - (a.bestUnder?.price ?? -Infinity);
+      return 0;
+    });
+
+    renderGrouped(grouped);
+  }
+
+  function renderGrouped(groups){
+    if (!groups.length){
+      els.content.innerHTML = `<div class="empty">No rows match your filters.</div>`;
+      return;
+    }
+
+    els.content.innerHTML = groups.map(g => {
+      const kickoffTxt = g.kickoff ? new Date(g.kickoff).toUTCString().replace('GMT','UTC') : '';
+      const title = `${escapeHtml(g.home)} vs ${escapeHtml(g.away)}`;
+      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(g.market)} · Line ${escapeHtml(g.line)}`;
+
+      const overDot = dotClassFromEdge(g.overEdge);
+      const underDot = dotClassFromEdge(g.underEdge);
+
+      const overBook = g.bestOver ? escapeHtml(g.bestOver.bookmaker) : '—';
+      const underBook = g.bestUnder ? escapeHtml(g.bestUnder.bookmaker) : '—';
+
+      const overPrice = g.bestOver ? g.bestOver.price.toFixed(2) : '';
+      const underPrice = g.bestUnder ? g.bestUnder.price.toFixed(2) : '';
+
+      return `
+        <div class="card">
+          <div>
+            <div class="fixtureTitle">${title}</div>
+            <div class="fixtureMeta">${meta}</div>
+          </div>
+
+          <div class="badge">${overBook}</div>
+          <div class="badge">${escapeHtml(g.market)}</div>
+          <div class="badge">${escapeHtml(g.line)}</div>
+
+          <div class="priceBox">
+            <div class="priceLabel"><span class="dot ${overDot}"></span>Over</div>
+            <div class="priceValue">${escapeHtml(overPrice)}</div>
+          </div>
+
+          <div class="priceBox">
+            <div class="priceLabel"><span class="dot ${underDot}"></span>Under</div>
+            <div class="priceValue">${escapeHtml(underPrice)}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderRaw(rows){
+    if (!rows.length){
+      els.content.innerHTML = `<div class="empty">No rows match your filters.</div>`;
+      return;
+    }
+
+    els.content.innerHTML = rows.map(r => {
+      const kickoffTxt = kickoff(r) ? new Date(kickoff(r)).toUTCString().replace('GMT','UTC') : '';
+      const title = `${escapeHtml(home(r))} vs ${escapeHtml(away(r))}`;
+      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(market(r))} · Line ${escapeHtml(line(r))}`;
+
+      // crude "per row" edge cannot be consensus without grouping, so we show amber dots here
+      const overDot = 'amber';
+      const underDot = 'amber';
+
+      const bm = escapeHtml(bookmaker(r));
+      const mk = escapeHtml(market(r));
+      const ln = escapeHtml(line(r));
+
+      const o = Number(over(r));
+      const u = Number(under(r));
+
+      return `
+        <div class="card">
+          <div>
+            <div class="fixtureTitle">${title}</div>
+            <div class="fixtureMeta">${meta}</div>
+          </div>
+
+          <div class="badge">${bm}</div>
+          <div class="badge">${mk}</div>
+          <div class="badge">${ln}</div>
+
+          <div class="priceBox">
+            <div class="priceLabel"><span class="dot ${overDot}"></span>Over</div>
+            <div class="priceValue">${Number.isFinite(o) ? o.toFixed(2) : ''}</div>
+          </div>
+
+          <div class="priceBox">
+            <div class="priceLabel"><span class="dot ${underDot}"></span>Under</div>
+            <div class="priceValue">${Number.isFinite(u) ? u.toFixed(2) : ''}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function load(){
+    els.status.textContent = 'Loading…';
+    try{
+      const res = await fetch('./odds.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      // supports { items: [...] } or raw array
+      RAW = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : []);
+      META.generated_at_utc = data.generated_at_utc ?? null;
+
+      buildBookmakerOptions(RAW);
+      buildMarketOptions(RAW);
+      buildLineOptions(RAW);
+
+      const upd = META.generated_at_utc ? new Date(META.generated_at_utc).toUTCString().replace('GMT','UTC') : '—';
+      els.updated.textContent = `Updated ${upd}`;
+      els.count.textContent = `Rows ${RAW.length}`;
+
+      els.status.textContent = 'Loaded';
+      apply();
+    }catch(err){
+      els.status.textContent = 'Failed';
+      els.content.innerHTML = `<div class="empty">Could not load <code>odds.json</code>. Error: ${escapeHtml(err.message)}</div>`;
+      els.updated.textContent = '';
+      els.count.textContent = '';
+    }
+  }
+
+  // events
+  els.q.addEventListener('input', apply);
+  els.bookmaker.addEventListener('change', apply);
+  els.market.addEventListener('change', () => { buildLineOptions(RAW); apply(); });
+  els.line.addEventListener('change', apply);
+  els.sort.addEventListener('change', apply);
+  els.rawMode.addEventListener('change', apply);
+  els.onlyGreen.addEventListener('change', apply);
+
+  els.refresh.addEventListener('click', load);
+  els.download.addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.href = './odds.json';
+    a.download = 'odds.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  load();
+</script>
 </body>
 </html>
