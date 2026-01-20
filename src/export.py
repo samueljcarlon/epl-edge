@@ -12,6 +12,7 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
     con = connect(db_path)
     init_db(con)
 
+    # Make rows come back as dicts
     con.row_factory = lambda cursor, row: {
         col[0]: row[idx] for idx, col in enumerate(cursor.description)
     }
@@ -32,6 +33,7 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
             over_price,
             under_price
         FROM odds
+        WHERE market IN ('totals', 'alternate_totals')
         ORDER BY captured_at_utc DESC
         LIMIT ?
         """,
@@ -60,12 +62,7 @@ def main() -> None:
     except ValueError:
         limit = 5000
 
-    n = export_odds_json(
-        db_path=db_path,
-        out_path=out_path,
-        limit=limit,
-    )
-
+    n = export_odds_json(db_path=db_path, out_path=out_path, limit=limit)
     print(f"[export] Exported {n} rows to {out_path}")
 
 
