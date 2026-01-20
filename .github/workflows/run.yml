@@ -1,32 +1,17 @@
-name: Run collector and publish
+name: run
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 */3 * * *"
-
-permissions:
-  contents: write
-
-concurrency:
-  group: collector-publish-main
-  cancel-in-progress: true
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
 
 jobs:
-  run:
+  collect:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Sync main (before generating files)
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -47,14 +32,12 @@ jobs:
 
       - name: Export public JSON
         run: |
-          python -m src.export
+          python export.py
 
       - name: Commit outputs
         run: |
-          git add data/app.db site/public/odds.json
-          git commit -m "Update data + site" || echo "No changes"
-
-      - name: Push
-        run: |
-          git pull --rebase origin main
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add site/public/odds.json data/app.db
+          git commit -m "Update odds" || echo "No changes"
           git push
