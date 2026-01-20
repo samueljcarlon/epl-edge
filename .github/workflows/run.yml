@@ -3,7 +3,7 @@ name: Run collector and publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */3 * * *"   # every 3 hours
+    - cron: "0 */3 * * *"
 
 permissions:
   contents: write
@@ -15,6 +15,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync main (reset to origin)
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -41,6 +49,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add data/app.db site/public/odds.json
+          git add site/public data/app.db || true
           git commit -m "Update data + site" || echo "No changes"
-          git push
+          git push origin main
