@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-01-21T19:17:56.256007+00:00",
+  "generated_at_utc": "2026-01-21T21:53:30.966969+00:00",
   "count": 886,
   "items": [
     {
@@ -307,7 +307,7 @@
       "under_price": 1.73
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -323,7 +323,7 @@
       "under_price": 2.11
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -339,7 +339,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -355,7 +355,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -371,7 +371,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -387,7 +387,7 @@
       "under_price": 2.07
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -403,7 +403,7 @@
       "under_price": 2.01
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -419,7 +419,7 @@
       "under_price": 1.75
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -435,7 +435,7 @@
       "under_price": 2.03
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -451,7 +451,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -483,7 +483,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T16:01:54Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -495,11 +495,11 @@
       "bookmaker": "Bovada",
       "market": "spreads",
       "line": 0.0,
-      "over_price": 1.8,
-      "under_price": 2.05
+      "over_price": 1.78,
+      "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T16:01:54Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -511,8 +511,8 @@
       "bookmaker": "Bovada",
       "market": "totals",
       "line": 2.25,
-      "over_price": 1.85,
-      "under_price": 1.98
+      "over_price": 1.8,
+      "under_price": 2.05
     },
     {
       "captured_at_utc": "2026-01-21T19:17:55Z",
@@ -531,7 +531,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -547,7 +547,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -563,7 +563,7 @@
       "under_price": 1.78
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -579,7 +579,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -595,7 +595,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -627,7 +627,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -643,7 +643,7 @@
       "under_price": 1.74
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -659,7 +659,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -675,7 +675,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -691,7 +691,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -707,7 +707,7 @@
       "under_price": 2.07
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -723,7 +723,7 @@
       "under_price": 2.01
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -739,7 +739,7 @@
       "under_price": 2.14
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -752,7 +752,7 @@
       "market": "totals",
       "line": 2.5,
       "over_price": 2.14,
-      "under_price": 1.84
+      "under_price": 1.85
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -771,7 +771,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -787,7 +787,7 @@
       "under_price": 1.73
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -803,7 +803,7 @@
       "under_price": 1.78
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -819,7 +819,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -835,7 +835,7 @@
       "under_price": 2.07
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -851,7 +851,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -867,7 +867,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -883,7 +883,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -899,7 +899,7 @@
       "under_price": 1.73
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a396966205b21287109ea8cae42e44c1",
       "commence_time_utc": "2026-01-24T12:30:00Z",
       "matchweek": null,
@@ -915,7 +915,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -931,7 +931,7 @@
       "under_price": 1.43
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -947,7 +947,7 @@
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -963,7 +963,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -995,7 +995,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1011,7 +1011,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1043,7 +1043,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1059,7 +1059,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1107,7 +1107,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1123,7 +1123,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1139,7 +1139,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1155,7 +1155,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1187,7 +1187,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1219,7 +1219,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1235,7 +1235,7 @@
       "under_price": 1.79
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1251,7 +1251,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1267,7 +1267,7 @@
       "under_price": 1.82
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1299,7 +1299,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1331,7 +1331,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1363,7 +1363,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1379,7 +1379,7 @@
       "under_price": 1.78
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1411,7 +1411,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1427,7 +1427,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1443,7 +1443,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1459,7 +1459,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1475,7 +1475,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -1491,7 +1491,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1e811fa7ead0a3e6ef920b15b2bbb95d",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2115,7 +2115,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2127,11 +2127,11 @@
       "bookmaker": "1xBet",
       "market": "totals",
       "line": 3.5,
-      "over_price": 2.08,
-      "under_price": 1.87
+      "over_price": 2.1,
+      "under_price": 1.86
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2147,7 +2147,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2179,7 +2179,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2195,7 +2195,7 @@
       "under_price": 1.84
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2227,7 +2227,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2243,7 +2243,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2291,7 +2291,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T12:05:36Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2323,7 +2323,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2339,7 +2339,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2355,7 +2355,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2387,7 +2387,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2419,7 +2419,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2435,7 +2435,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2451,7 +2451,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2467,7 +2467,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2499,7 +2499,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2531,7 +2531,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2563,7 +2563,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2579,7 +2579,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2611,7 +2611,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2627,7 +2627,7 @@
       "under_price": 2.04
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2643,7 +2643,7 @@
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2659,7 +2659,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2675,7 +2675,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2691,7 +2691,7 @@
       "under_price": 3.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b32426b16a13c60170645be87a6b5cf5",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2707,7 +2707,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2723,7 +2723,7 @@
       "under_price": 2.04
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2739,7 +2739,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2755,7 +2755,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2771,7 +2771,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2787,7 +2787,7 @@
       "under_price": 1.98
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2803,7 +2803,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2819,7 +2819,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2835,7 +2835,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2851,7 +2851,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2867,7 +2867,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2899,7 +2899,7 @@
       "under_price": 1.98
     },
     {
-      "captured_at_utc": "2026-01-21T16:01:54Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2915,7 +2915,7 @@
       "under_price": 1.82
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2931,7 +2931,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2947,7 +2947,7 @@
       "under_price": 2.01
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2963,7 +2963,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -2975,11 +2975,11 @@
       "bookmaker": "Fliff",
       "market": "spreads",
       "line": 0.0,
-      "over_price": 1.77,
+      "over_price": 1.74,
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3011,7 +3011,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3027,7 +3027,7 @@
       "under_price": 1.98
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3043,7 +3043,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3059,7 +3059,7 @@
       "under_price": 1.92
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3075,7 +3075,7 @@
       "under_price": 1.92
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3091,7 +3091,7 @@
       "under_price": 1.98
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3107,7 +3107,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3119,11 +3119,11 @@
       "bookmaker": "Matchbook",
       "market": "spreads",
       "line": 0.0,
-      "over_price": 1.91,
-      "under_price": 2.06
+      "over_price": 1.92,
+      "under_price": 2.04
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3136,7 +3136,7 @@
       "market": "totals",
       "line": 2.5,
       "over_price": 1.89,
-      "under_price": 2.1
+      "under_price": 2.08
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -3155,7 +3155,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3171,7 +3171,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3187,7 +3187,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3203,7 +3203,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3219,7 +3219,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3235,7 +3235,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3251,7 +3251,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3267,7 +3267,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3283,7 +3283,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "db78ecd9c2d10ab045a91fa64d90a172",
       "commence_time_utc": "2026-01-24T15:00:00Z",
       "matchweek": null,
@@ -3331,7 +3331,7 @@
       "under_price": 2.4
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3347,7 +3347,7 @@
       "under_price": 1.39
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3363,7 +3363,7 @@
       "under_price": 2.44
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3379,7 +3379,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3427,7 +3427,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3443,7 +3443,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3475,7 +3475,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3491,7 +3491,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3523,7 +3523,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3535,11 +3535,11 @@
       "bookmaker": "Bovada",
       "market": "totals",
       "line": 3.0,
-      "over_price": 1.87,
-      "under_price": 1.95
+      "over_price": 2.0,
+      "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3555,7 +3555,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3571,7 +3571,7 @@
       "under_price": 2.28
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3603,7 +3603,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3635,7 +3635,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3651,7 +3651,7 @@
       "under_price": 2.37
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3667,7 +3667,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3683,7 +3683,7 @@
       "under_price": 1.61
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3715,7 +3715,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3747,7 +3747,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3779,7 +3779,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3795,7 +3795,7 @@
       "under_price": 2.34
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3827,7 +3827,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3843,7 +3843,7 @@
       "under_price": 1.86
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3859,7 +3859,7 @@
       "under_price": 2.3
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3875,7 +3875,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3891,7 +3891,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3907,7 +3907,7 @@
       "under_price": 2.4
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "7f9f2414fa5b890e516960bfcb8f153d",
       "commence_time_utc": "2026-01-24T17:30:00Z",
       "matchweek": null,
@@ -3923,7 +3923,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -3935,11 +3935,11 @@
       "bookmaker": "1xBet",
       "market": "spreads",
       "line": 0.0,
-      "over_price": 1.44,
-      "under_price": 2.79
+      "over_price": 1.46,
+      "under_price": 2.72
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -3951,11 +3951,11 @@
       "bookmaker": "1xBet",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.7,
-      "under_price": 2.34
+      "over_price": 1.71,
+      "under_price": 2.32
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -3967,11 +3967,11 @@
       "bookmaker": "Bally Bet",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4003,7 +4003,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4019,7 +4019,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4031,8 +4031,8 @@
       "bookmaker": "BetRivers",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.67,
-      "under_price": 2.18
+      "over_price": 1.66,
+      "under_price": 2.2
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -4051,7 +4051,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4067,7 +4067,7 @@
       "under_price": 1.78
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4099,7 +4099,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T16:01:54Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4131,7 +4131,7 @@
       "under_price": 1.82
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4143,11 +4143,11 @@
       "bookmaker": "Casumo",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4163,7 +4163,7 @@
       "under_price": 2.17
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4195,7 +4195,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4227,7 +4227,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4243,7 +4243,7 @@
       "under_price": 2.27
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4255,11 +4255,11 @@
       "bookmaker": "Grosvenor",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4272,10 +4272,10 @@
       "market": "totals",
       "line": 2.5,
       "over_price": 1.68,
-      "under_price": 2.2
+      "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4288,7 +4288,7 @@
       "market": "totals",
       "line": 2.5,
       "over_price": 1.68,
-      "under_price": 2.2
+      "under_price": 2.23
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -4307,7 +4307,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4339,7 +4339,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4371,7 +4371,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4383,11 +4383,11 @@
       "bookmaker": "MyBookie.ag",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.6,
+      "over_price": 1.61,
       "under_price": 2.19
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4419,7 +4419,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4431,11 +4431,11 @@
       "bookmaker": "Pinnacle",
       "market": "totals",
       "line": 2.75,
-      "over_price": 1.83,
-      "under_price": 2.07
+      "over_price": 1.84,
+      "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4451,7 +4451,7 @@
       "under_price": 2.25
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4463,11 +4463,11 @@
       "bookmaker": "Unibet (NL)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4479,11 +4479,11 @@
       "bookmaker": "Unibet (SE)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4499,7 +4499,7 @@
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "1ca6d3d9cde3e58a39211feb9188530c",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4511,11 +4511,11 @@
       "bookmaker": "betPARX",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.68,
+      "over_price": 1.67,
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4531,7 +4531,7 @@
       "under_price": 1.51
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4547,7 +4547,7 @@
       "under_price": 2.15
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4559,11 +4559,11 @@
       "bookmaker": "Bally Bet",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4595,7 +4595,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4611,7 +4611,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4623,8 +4623,8 @@
       "bookmaker": "BetRivers",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.74,
-      "under_price": 2.07
+      "over_price": 1.72,
+      "under_price": 2.1
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -4643,7 +4643,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4659,7 +4659,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4691,7 +4691,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4707,7 +4707,7 @@
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4719,11 +4719,11 @@
       "bookmaker": "Casumo",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4739,7 +4739,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4771,7 +4771,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4803,7 +4803,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4819,7 +4819,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4831,11 +4831,11 @@
       "bookmaker": "Grosvenor",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4847,11 +4847,11 @@
       "bookmaker": "LeoVegas",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.76,
-      "under_price": 2.1
+      "over_price": 1.74,
+      "under_price": 2.12
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4863,8 +4863,8 @@
       "bookmaker": "LeoVegas (SE)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.76,
-      "under_price": 2.1
+      "over_price": 1.74,
+      "under_price": 2.12
     },
     {
       "captured_at_utc": "2026-01-21T12:05:36Z",
@@ -4883,7 +4883,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4915,7 +4915,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4947,7 +4947,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4963,7 +4963,7 @@
       "under_price": 2.02
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -4995,7 +4995,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5011,7 +5011,7 @@
       "under_price": 1.9
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5027,7 +5027,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5039,11 +5039,11 @@
       "bookmaker": "Unibet (NL)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5055,11 +5055,11 @@
       "bookmaker": "Unibet (SE)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5075,7 +5075,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "4d6c0ac53b2b38aeb5bc8c8163f3f8b9",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5087,8 +5087,8 @@
       "bookmaker": "betPARX",
       "market": "totals",
       "line": 2.5,
-      "over_price": 1.75,
-      "under_price": 2.08
+      "over_price": 1.73,
+      "under_price": 2.1
     },
     {
       "captured_at_utc": "2026-01-19T15:52:19Z",
@@ -5859,7 +5859,7 @@
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5875,7 +5875,7 @@
       "under_price": 2.72
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5891,7 +5891,7 @@
       "under_price": 1.94
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5907,7 +5907,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5939,7 +5939,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5955,7 +5955,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -5987,7 +5987,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6003,7 +6003,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6051,7 +6051,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6067,7 +6067,7 @@
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6083,7 +6083,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6099,7 +6099,7 @@
       "under_price": 1.78
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6131,7 +6131,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6163,7 +6163,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6179,7 +6179,7 @@
       "under_price": 1.82
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6195,7 +6195,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6211,7 +6211,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6243,7 +6243,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6275,7 +6275,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6307,7 +6307,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6323,7 +6323,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6355,7 +6355,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6371,7 +6371,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6387,7 +6387,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6403,7 +6403,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6419,7 +6419,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6435,7 +6435,7 @@
       "under_price": 1.8
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "84aeb5074adb6205fcb1206830a62861",
       "commence_time_utc": "2026-01-25T14:00:00Z",
       "matchweek": null,
@@ -6707,7 +6707,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6723,7 +6723,7 @@
       "under_price": 2.22
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6739,7 +6739,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6771,7 +6771,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6787,7 +6787,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6819,7 +6819,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6835,7 +6835,7 @@
       "under_price": 2.16
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6883,7 +6883,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6895,11 +6895,11 @@
       "bookmaker": "Bovada",
       "market": "totals",
       "line": 2.75,
-      "over_price": 1.91,
-      "under_price": 1.91
+      "over_price": 1.89,
+      "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6915,7 +6915,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6931,7 +6931,7 @@
       "under_price": 2.04
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6963,7 +6963,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -6995,7 +6995,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7011,7 +7011,7 @@
       "under_price": 2.11
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7027,7 +7027,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7043,7 +7043,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7075,7 +7075,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7107,7 +7107,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7123,7 +7123,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7155,7 +7155,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7171,7 +7171,7 @@
       "under_price": 1.97
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7187,7 +7187,7 @@
       "under_price": 2.15
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7203,7 +7203,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7219,7 +7219,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7235,7 +7235,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d6e09834e58cd6190113f232aece005",
       "commence_time_utc": "2026-01-25T16:30:00Z",
       "matchweek": null,
@@ -7475,7 +7475,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7491,7 +7491,7 @@
       "under_price": 2.14
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7507,7 +7507,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7523,7 +7523,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7539,7 +7539,7 @@
       "under_price": 1.65
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7555,7 +7555,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7571,7 +7571,7 @@
       "under_price": 1.88
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7587,7 +7587,7 @@
       "under_price": 1.61
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7603,7 +7603,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7619,7 +7619,7 @@
       "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7635,7 +7635,7 @@
       "under_price": 1.65
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7651,7 +7651,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7663,11 +7663,11 @@
       "bookmaker": "Bovada",
       "market": "totals",
       "line": 2.25,
-      "over_price": 1.91,
-      "under_price": 1.91
+      "over_price": 1.95,
+      "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7683,7 +7683,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7695,11 +7695,11 @@
       "bookmaker": "Codere (IT)",
       "market": "totals",
       "line": 2.5,
-      "over_price": 2.18,
-      "under_price": 1.66
+      "over_price": 2.23,
+      "under_price": 1.69
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7715,7 +7715,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7731,7 +7731,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7763,7 +7763,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7779,7 +7779,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7795,7 +7795,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7811,7 +7811,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7827,7 +7827,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7843,7 +7843,7 @@
       "under_price": 2.06
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7875,7 +7875,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7891,7 +7891,7 @@
       "under_price": 1.64
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7907,7 +7907,7 @@
       "under_price": 1.65
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7923,7 +7923,7 @@
       "under_price": 2.12
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7939,7 +7939,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7955,7 +7955,7 @@
       "under_price": 1.65
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7971,7 +7971,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -7987,7 +7987,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -8003,7 +8003,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e90e22b348a38af568f940b4b5d92ca6",
       "commence_time_utc": "2026-01-26T20:00:00Z",
       "matchweek": null,
@@ -8019,7 +8019,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8035,7 +8035,7 @@
       "under_price": 3.04
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8051,7 +8051,7 @@
       "under_price": 2.02
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8083,7 +8083,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8099,7 +8099,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8115,7 +8115,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8147,7 +8147,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8163,7 +8163,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8195,7 +8195,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8211,7 +8211,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8227,7 +8227,7 @@
       "under_price": 1.96
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8243,7 +8243,7 @@
       "under_price": 1.97
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8275,7 +8275,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8307,7 +8307,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8320,10 +8320,10 @@
       "market": "totals",
       "line": 2.5,
       "over_price": 1.83,
-      "under_price": 1.88
+      "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8355,7 +8355,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8371,7 +8371,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8387,7 +8387,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8403,7 +8403,7 @@
       "under_price": 1.96
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8419,7 +8419,7 @@
       "under_price": 1.96
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -8435,7 +8435,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "36820753efb36739a83c6e5e440827b2",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9091,7 +9091,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9107,7 +9107,7 @@
       "under_price": 1.61
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9123,7 +9123,7 @@
       "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9155,7 +9155,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9171,7 +9171,7 @@
       "under_price": 1.96
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9187,7 +9187,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9219,7 +9219,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9235,7 +9235,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9267,7 +9267,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9283,7 +9283,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9299,7 +9299,7 @@
       "under_price": 2.12
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9315,7 +9315,7 @@
       "under_price": 2.14
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9347,7 +9347,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9379,7 +9379,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9395,7 +9395,7 @@
       "under_price": 2.07
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9427,7 +9427,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9443,7 +9443,7 @@
       "under_price": 1.97
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9459,7 +9459,7 @@
       "under_price": 2.15
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9475,7 +9475,7 @@
       "under_price": 2.12
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9491,7 +9491,7 @@
       "under_price": 2.12
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9507,7 +9507,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "b3c2ff07a6d24ca61f13c268a535c317",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9539,7 +9539,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9555,7 +9555,7 @@
       "under_price": 1.98
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9587,7 +9587,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9603,7 +9603,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9619,7 +9619,7 @@
       "under_price": 1.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9651,7 +9651,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9667,7 +9667,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9699,7 +9699,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9715,7 +9715,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9731,7 +9731,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9747,7 +9747,7 @@
       "under_price": 1.92
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9779,7 +9779,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9811,7 +9811,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9827,7 +9827,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9859,7 +9859,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9875,7 +9875,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9891,7 +9891,7 @@
       "under_price": 1.9
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9907,7 +9907,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9923,7 +9923,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9939,7 +9939,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "e52dc0a3276ffe7c9d3630a81b4300ca",
       "commence_time_utc": "2026-01-31T15:00:00Z",
       "matchweek": null,
@@ -9987,7 +9987,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10003,7 +10003,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10035,7 +10035,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10051,7 +10051,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10067,7 +10067,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10099,7 +10099,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10115,7 +10115,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10147,7 +10147,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10163,7 +10163,7 @@
       "under_price": 1.54
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10179,7 +10179,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10195,7 +10195,7 @@
       "under_price": 1.61
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10227,7 +10227,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10259,7 +10259,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10275,7 +10275,7 @@
       "under_price": 1.57
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10307,7 +10307,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10323,7 +10323,7 @@
       "under_price": 2.0
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10339,7 +10339,7 @@
       "under_price": 1.65
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10355,7 +10355,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10371,7 +10371,7 @@
       "under_price": 1.6
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10387,7 +10387,7 @@
       "under_price": 2.5
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "a3975ce7f6fd29bb83e7eadc3f7c1b3a",
       "commence_time_utc": "2026-01-31T17:30:00Z",
       "matchweek": null,
@@ -10595,7 +10595,7 @@
       "under_price": 2.25
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10611,7 +10611,7 @@
       "under_price": 2.89
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10627,7 +10627,7 @@
       "under_price": 2.42
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10659,7 +10659,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10675,7 +10675,7 @@
       "under_price": 1.86
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10691,7 +10691,7 @@
       "under_price": 2.32
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10723,7 +10723,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10739,7 +10739,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10771,7 +10771,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10787,7 +10787,7 @@
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10803,7 +10803,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10819,7 +10819,7 @@
       "under_price": 2.35
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10851,7 +10851,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10883,7 +10883,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10899,7 +10899,7 @@
       "under_price": 2.24
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10931,7 +10931,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10947,7 +10947,7 @@
       "under_price": 1.86
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10963,7 +10963,7 @@
       "under_price": 2.3
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10979,7 +10979,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -10995,7 +10995,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -11011,7 +11011,7 @@
       "under_price": 2.25
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "85b2c858725574961261f22c2b5b5d7e",
       "commence_time_utc": "2026-01-31T20:00:00Z",
       "matchweek": null,
@@ -11635,7 +11635,7 @@
       "under_price": 1.73
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11651,7 +11651,7 @@
       "under_price": 2.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11667,7 +11667,7 @@
       "under_price": 2.11
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11699,7 +11699,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11715,7 +11715,7 @@
       "under_price": 1.83
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11731,7 +11731,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11763,7 +11763,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11779,7 +11779,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11811,7 +11811,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11827,7 +11827,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11843,7 +11843,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11859,7 +11859,7 @@
       "under_price": 2.1
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11891,7 +11891,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11923,7 +11923,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11939,7 +11939,7 @@
       "under_price": 1.97
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11971,7 +11971,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -11987,7 +11987,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12003,7 +12003,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12019,7 +12019,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12035,7 +12035,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12051,7 +12051,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "9c612b05e7fc0b581b689380f7405f35",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12067,7 +12067,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12079,11 +12079,11 @@
       "bookmaker": "1xBet",
       "market": "spreads",
       "line": 0.0,
-      "over_price": 1.5,
-      "under_price": 2.59
+      "over_price": 1.49,
+      "under_price": 2.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12095,11 +12095,11 @@
       "bookmaker": "1xBet",
       "market": "totals",
       "line": 2.5,
-      "over_price": 2.1,
-      "under_price": 1.86
+      "over_price": 2.08,
+      "under_price": 1.87
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12131,7 +12131,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12147,7 +12147,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12163,7 +12163,7 @@
       "under_price": 1.75
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12195,7 +12195,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12207,11 +12207,11 @@
       "bookmaker": "Bovada",
       "market": "totals",
       "line": 2.5,
-      "over_price": 2.05,
-      "under_price": 1.8
+      "over_price": 2.02,
+      "under_price": 1.82
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12243,7 +12243,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12259,7 +12259,7 @@
       "under_price": 1.71
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12275,7 +12275,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12291,7 +12291,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12323,7 +12323,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12355,7 +12355,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12371,7 +12371,7 @@
       "under_price": 1.74
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12403,7 +12403,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12419,7 +12419,7 @@
       "under_price": 1.81
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12435,7 +12435,7 @@
       "under_price": 1.77
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12451,7 +12451,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12467,7 +12467,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12483,7 +12483,7 @@
       "under_price": 1.73
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "d2436eec6993a6e21f00887163987e87",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12515,7 +12515,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12531,7 +12531,7 @@
       "under_price": 2.25
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12563,7 +12563,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12579,7 +12579,7 @@
       "under_price": 1.94
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12595,7 +12595,7 @@
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12627,7 +12627,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12643,7 +12643,7 @@
       "under_price": 1.95
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12675,7 +12675,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12691,7 +12691,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12707,7 +12707,7 @@
       "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12723,7 +12723,7 @@
       "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12755,7 +12755,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12787,7 +12787,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12803,7 +12803,7 @@
       "under_price": 2.08
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12835,7 +12835,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12851,7 +12851,7 @@
       "under_price": 1.96
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12867,7 +12867,7 @@
       "under_price": 2.15
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12883,7 +12883,7 @@
       "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12899,7 +12899,7 @@
       "under_price": 2.23
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12915,7 +12915,7 @@
       "under_price": 2.05
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "ded98b5baf6ff662af13282c2c6c7946",
       "commence_time_utc": "2026-02-01T14:00:00Z",
       "matchweek": null,
@@ -12947,7 +12947,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -12963,7 +12963,7 @@
       "under_price": 2.4
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -12995,7 +12995,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13011,7 +13011,7 @@
       "under_price": 1.84
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13027,7 +13027,7 @@
       "under_price": 2.32
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13059,7 +13059,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13075,7 +13075,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13107,7 +13107,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13123,7 +13123,7 @@
       "under_price": 2.2
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13139,7 +13139,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13155,7 +13155,7 @@
       "under_price": 2.35
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13187,7 +13187,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13219,7 +13219,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13235,7 +13235,7 @@
       "under_price": 2.22
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13267,7 +13267,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13283,7 +13283,7 @@
       "under_price": 1.85
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13299,7 +13299,7 @@
       "under_price": 2.3
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13315,7 +13315,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13331,7 +13331,7 @@
       "under_price": 2.33
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13347,7 +13347,7 @@
       "under_price": 2.15
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "38a3cb5e295f55e274d589fc646cf2dd",
       "commence_time_utc": "2026-02-01T16:30:00Z",
       "matchweek": null,
@@ -13763,7 +13763,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13779,7 +13779,7 @@
       "under_price": 1.76
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13811,7 +13811,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13827,7 +13827,7 @@
       "under_price": 1.94
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13843,7 +13843,7 @@
       "under_price": 1.66
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13875,7 +13875,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13891,7 +13891,7 @@
       "under_price": 1.91
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13923,7 +13923,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13939,7 +13939,7 @@
       "under_price": 1.62
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13955,7 +13955,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -13971,7 +13971,7 @@
       "under_price": 1.68
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14003,7 +14003,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14035,7 +14035,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14051,7 +14051,7 @@
       "under_price": 1.66
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14083,7 +14083,7 @@
       "under_price": null
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14099,7 +14099,7 @@
       "under_price": 1.93
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14115,7 +14115,7 @@
       "under_price": 1.7
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14131,7 +14131,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14147,7 +14147,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
@@ -14163,7 +14163,7 @@
       "under_price": 1.67
     },
     {
-      "captured_at_utc": "2026-01-21T19:17:55Z",
+      "captured_at_utc": "2026-01-21T21:53:30Z",
       "fixture_id": "5d2c6ee96eacb9c4bcac89213bcaf304",
       "commence_time_utc": "2026-02-02T20:00:00Z",
       "matchweek": null,
