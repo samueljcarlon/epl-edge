@@ -7,7 +7,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
-
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 
@@ -73,56 +72,55 @@ def fetch_odds_events(
     r = requests.get(url, params=params, timeout=30)
     r.raise_for_status()
     data = r.json()
-    if not isinstance(data, list):
-        return []
-    return data
+    return data if isinstance(data, list) else []
 
 
-def parse_totals_25(market_obj: Dict[str, Any]) -> Optional[Tuple[float, float, float]]:
+def _safe_float(x: Any) -> Optional[float]:
+    try:
+        v = float(x)
+        return v if v == v else None
+    except Exception:
+        return None
+
+
+def parse_totals_all_lines(market_obj: Dict[str, Any]) -> List[Tuple[float, float, float]]:
     """
-    Returns (line, over_price, under_price) for totals line 2.5 only.
-    Odds API totals outcomes include: { name: "Over"/"Under", price: X, point: Y }.
+    Returns list of (line, over_price, under_price) for every totals line available.
+    Odds API totals outcomes: { name: "Over"/"Under", price: X, point: Y }.
     """
     outcomes = market_obj.get("outcomes") or []
     if not isinstance(outcomes, list):
-        return None
+        return []
 
-    over_price = None
-    under_price = None
-    line_val = None
+    by_point: Dict[float, Dict[str, float]] = {}
 
     for o in outcomes:
-        try:
-            name = str(o.get("name", "")).strip().lower()
-            price = float(o.get("price"))
-            point = o.get("point", None)
-            if point is None:
-                continue
-            point_f = float(point)
-        except Exception:
+        name = str(o.get("name", "")).strip().lower()
+        price = _safe_float(o.get("price"))
+        point = _safe_float(o.get("point"))
+        if price is None or point is None:
+            continue
+        if name not in ("over", "under"):
             continue
 
-        # hard lock to 2.5
-        if abs(point_f - 2.5) > 1e-9:
-            continue
+        if point not in by_point:
+            by_point[point] = {}
+        by_point[point][name] = price
 
-        line_val = 2.5
-        if name == "over":
-            over_price = price
-        elif name == "under":
-            under_price = price
+    rows: List[Tuple[float, float, float]] = []
+    for point, vals in by_point.items():
+        if "over" in vals and "under" in vals:
+            rows.append((point, vals["over"], vals["under"]))
 
-    if line_val is None:
-        return None
-    if over_price is None or under_price is None:
-        return None
-    return (line_val, over_price, under_price)
+    # stable ordering
+    rows.sort(key=lambda t: t[0])
+    return rows
 
 
 def parse_btts(market_obj: Dict[str, Any]) -> Optional[Tuple[Optional[float], float, float]]:
     """
     Returns (line=None, yes_price, no_price) stored as (over_price, under_price).
-    Odds API BTTS outcomes include: { name: "Yes"/"No", price: X }.
+    Odds API BTTS outcomes: { name: "Yes"/"No", price: X }.
     """
     outcomes = market_obj.get("outcomes") or []
     if not isinstance(outcomes, list):
@@ -132,12 +130,10 @@ def parse_btts(market_obj: Dict[str, Any]) -> Optional[Tuple[Optional[float], fl
     no_price = None
 
     for o in outcomes:
-        try:
-            name = str(o.get("name", "")).strip().lower()
-            price = float(o.get("price"))
-        except Exception:
+        name = str(o.get("name", "")).strip().lower()
+        price = _safe_float(o.get("price"))
+        if price is None:
             continue
-
         if name == "yes":
             yes_price = price
         elif name == "no":
@@ -148,29 +144,79 @@ def parse_btts(market_obj: Dict[str, Any]) -> Optional[Tuple[Optional[float], fl
     return (None, yes_price, no_price)
 
 
+def parse_spreads_all_lines(
+    market_obj: Dict[str, Any],
+    home_team: str,
+    away_team: str,
+) -> List[Tuple[float, float, float]]:
+    """
+    Returns list of (line, home_price, away_price) for every spread line available.
+    Odds API spreads outcomes typically: { name: <team>, price: X, point: Y }.
+    We'll store:
+      market = "spreads"
+      line   = point (handicap for the home side)
+      over_price  = home_price
+      under_price = away_price
+    """
+    outcomes = market_obj.get("outcomes") or []
+    if not isinstance(outcomes, list):
+        return []
+
+    ht = home_team.strip().lower()
+    at = away_team.strip().lower()
+
+    by_point: Dict[float, Dict[str, float]] = {}
+
+    for o in outcomes:
+        name = str(o.get("name", "")).strip().lower()
+        price = _safe_float(o.get("price"))
+        point = _safe_float(o.get("point"))
+        if price is None or point is None:
+            continue
+
+        side: Optional[str] = None
+        if name == ht or name == "home":
+            side = "home"
+        elif name == at or name == "away":
+            side = "away"
+        else:
+            # sometimes the API gives short names, we avoid guessing
+            continue
+
+        if point not in by_point:
+            by_point[point] = {}
+        by_point[point][side] = price
+
+    rows: List[Tuple[float, float, float]] = []
+    for point, vals in by_point.items():
+        if "home" in vals and "away" in vals:
+            rows.append((point, vals["home"], vals["away"]))
+
+    rows.sort(key=lambda t: t[0])
+    return rows
+
+
 def upsert_fixtures(con: sqlite3.Connection, events: List[Dict[str, Any]]) -> int:
     rows = []
     for ev in events:
         fixture_id = str(ev.get("id", "")).strip()
         if not fixture_id:
             continue
-
-        commence = ev.get("commence_time")
-        home = ev.get("home_team")
-        away = ev.get("away_team")
-
         rows.append(
             (
                 fixture_id,
-                commence,
+                ev.get("commence_time"),
                 None,
                 "TIMED",
-                home,
-                away,
+                ev.get("home_team"),
+                ev.get("away_team"),
                 None,
                 None,
             )
         )
+
+    if not rows:
+        return 0
 
     con.executemany(
         """
@@ -191,12 +237,15 @@ def upsert_fixtures(con: sqlite3.Connection, events: List[Dict[str, Any]]) -> in
 
 
 def insert_snapshots(con: sqlite3.Connection, events: List[Dict[str, Any]], captured_at_utc: str) -> int:
-    snap_rows = []
+    snap_rows: List[Tuple[str, str, str, str, Optional[float], float, float]] = []
 
     for ev in events:
         fixture_id = str(ev.get("id", "")).strip()
         if not fixture_id:
             continue
+
+        home_team = str(ev.get("home_team") or "").strip()
+        away_team = str(ev.get("away_team") or "").strip()
 
         bookmakers = ev.get("bookmakers") or []
         if not isinstance(bookmakers, list):
@@ -217,21 +266,21 @@ def insert_snapshots(con: sqlite3.Connection, events: List[Dict[str, Any]], capt
                     continue
 
                 if mkey == "totals":
-                    parsed = parse_totals_25(m)
-                    if not parsed:
-                        continue
-                    ln, over_p, under_p = parsed
-                    snap_rows.append((captured_at_utc, fixture_id, bm_title, "totals", ln, over_p, under_p))
+                    for ln, over_p, under_p in parse_totals_all_lines(m):
+                        snap_rows.append((captured_at_utc, fixture_id, bm_title, "totals", ln, over_p, under_p))
+
+                elif mkey == "spreads":
+                    for ln, home_p, away_p in parse_spreads_all_lines(m, home_team, away_team):
+                        snap_rows.append((captured_at_utc, fixture_id, bm_title, "spreads", ln, home_p, away_p))
 
                 elif mkey == "btts":
                     parsed = parse_btts(m)
-                    if not parsed:
-                        continue
-                    ln, yes_p, no_p = parsed
-                    snap_rows.append((captured_at_utc, fixture_id, bm_title, "btts", ln, yes_p, no_p))
+                    if parsed:
+                        ln, yes_p, no_p = parsed
+                        snap_rows.append((captured_at_utc, fixture_id, bm_title, "btts", ln, yes_p, no_p))
 
                 else:
-                    # ignore everything else for now, keeps schema sane and stops crashes
+                    # keep the DB/UI sane: only store what we actually display
                     continue
 
     if not snap_rows:
@@ -249,32 +298,49 @@ def insert_snapshots(con: sqlite3.Connection, events: List[Dict[str, Any]], capt
     return len(snap_rows)
 
 
+def _fetch_with_fallback(api_key: str, sport_key: str, regions: str, markets_csv: str) -> List[Dict[str, Any]]:
+    """
+    The "C" thing: stop the pipeline crashing if the API rejects a market set.
+    We try the full list, then progressively drop markets until it works.
+    """
+    wanted = [m.strip() for m in markets_csv.split(",") if m.strip()]
+    if not wanted:
+        wanted = ["totals"]
+
+    # try full, then remove one-by-one from the end
+    for k in range(len(wanted), 0, -1):
+        mk = ",".join(wanted[:k])
+        try:
+            return fetch_odds_events(api_key, sport_key, regions, mk)
+        except requests.HTTPError:
+            continue
+
+    # last resort
+    return fetch_odds_events(api_key, sport_key, regions, "totals")
+
+
 def main() -> None:
     api_key = os.getenv("ODDS_API_KEY", "").strip()
     if not api_key or api_key.startswith("YOUR_"):
         raise RuntimeError("Missing ODDS_API_KEY in GitHub Secrets")
 
-    # keep it explicit and safe
     sport_key = "soccer_epl"
-    regions = "uk,eu,us,us2"
+    regions = os.getenv("ODDS_REGIONS", "uk,eu,us,us2").strip() or "uk,eu,us,us2"
+
+    # mainstream markets that fit your 2-price schema + UI
+    markets = os.getenv("ODDS_MARKETS", "totals,spreads,btts").strip() or "totals,spreads,btts"
 
     db_path = "data/app.db"
     con = ensure_db(db_path)
 
     captured = utcnow_z()
-
-    # try totals + btts, fall back to totals if API complains
-    try:
-        events = fetch_odds_events(api_key, sport_key, regions, markets="totals,btts")
-    except requests.HTTPError as e:
-        # fallback to totals only
-        events = fetch_odds_events(api_key, sport_key, regions, markets="totals")
+    events = _fetch_with_fallback(api_key, sport_key, regions, markets)
 
     with con:
         n_fix = upsert_fixtures(con, events)
         n_odds = insert_snapshots(con, events, captured)
 
-        # optional cleanup: keep last ~50k snapshots
+        # keep last ~50k snapshot rows
         con.execute(
             """
             DELETE FROM odds_snapshots
