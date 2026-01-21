@@ -1,125 +1,67 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+import sqlite3
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
-from src.db import connect, init_db, executemany
-from src.settings import get_settings
-from src.utils import utcnow_iso
 
-FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
-# TheOddsAPI market keys that are realistic and mostly 2-outcome-friendly for our schema
-SUPPORTED_MARKETS = {
-    "totals",
-    "alternate_totals",
-    "spreads",
-    "alternate_spreads",
-    "btts",
-}
 
-# Map market -> the two outcome labels we store into (over_price, under_price)
-# UI still says Over/Under, we just re-use those two columns.
-MARKET_OUTCOME_NAMES = {
-    "totals": ("Over", "Under"),
-    "alternate_totals": ("Over", "Under"),
-    "spreads": ("Home", "Away"),
-    "alternate_spreads": ("Home", "Away"),
-    "btts": ("Yes", "No"),
-}
+def utcnow_z() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
-def _safe_float(x: Any) -> Optional[float]:
-    try:
-        if x is None:
-            return None
-        v = float(x)
-        if v != v:  # NaN
-            return None
-        return v
-    except Exception:
-        return None
+def ensure_db(db_path: str) -> sqlite3.Connection:
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    con = sqlite3.connect(db_path)
+    con.execute("PRAGMA foreign_keys = ON;")
 
-
-def fetch_pl_matches(fd_token: str, days_back: int, days_forward: int) -> dict:
-    today = datetime.now(timezone.utc).date()
-    date_from = (today - timedelta(days=days_back)).isoformat()
-    date_to = (today + timedelta(days=days_forward)).isoformat()
-
-    url = f"{FOOTBALL_DATA_BASE}/competitions/PL/matches"
-    headers = {"X-Auth-Token": fd_token}
-    params = {"dateFrom": date_from, "dateTo": date_to}
-    r = requests.get(url, headers=headers, params=params, timeout=30)
-    r.raise_for_status()
-    return r.json()
-
-
-def store_fixtures_from_football_data(con, payload: dict) -> int:
-    matches = payload.get("matches", []) or []
-    rows = []
-    now = utcnow_iso()
-
-    for m in matches:
-        fixture_id = str(m.get("id"))
-        utc_date = m.get("utcDate")
-        status = m.get("status") or "UNKNOWN"
-        mw = (m.get("matchday") if m.get("matchday") is not None else None)
-
-        home_team = (m.get("homeTeam") or {}).get("name") or ""
-        away_team = (m.get("awayTeam") or {}).get("name") or ""
-
-        score = m.get("score") or {}
-        full_time = score.get("fullTime") or {}
-        home_goals = full_time.get("home")
-        away_goals = full_time.get("away")
-
-        rows.append(
-            (
-                fixture_id,
-                utc_date,
-                mw,
-                status,
-                home_team,
-                away_team,
-                home_goals,
-                away_goals,
-                now,
-            )
-        )
-
-    sql = """
-    INSERT INTO fixtures (
-      fixture_id, commence_time_utc, matchweek, status,
-      home_team, away_team, home_goals, away_goals, last_updated_utc
+    con.execute(
+        """
+        CREATE TABLE IF NOT EXISTS fixtures (
+          fixture_id TEXT PRIMARY KEY,
+          commence_time_utc TEXT,
+          matchweek INTEGER,
+          status TEXT,
+          home_team TEXT,
+          away_team TEXT,
+          home_goals INTEGER,
+          away_goals INTEGER
+        );
+        """
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ON CONFLICT(fixture_id) DO UPDATE SET
-      commence_time_utc=excluded.commence_time_utc,
-      matchweek=excluded.matchweek,
-      status=excluded.status,
-      home_team=excluded.home_team,
-      away_team=excluded.away_team,
-      home_goals=excluded.home_goals,
-      away_goals=excluded.away_goals,
-      last_updated_utc=excluded.last_updated_utc
-    """
-    executemany(con, sql, rows)
-    return len(rows)
+
+    con.execute(
+        """
+        CREATE TABLE IF NOT EXISTS odds_snapshots (
+          captured_at_utc TEXT NOT NULL,
+          fixture_id TEXT NOT NULL,
+          bookmaker TEXT NOT NULL,
+          market TEXT NOT NULL,
+          line REAL,
+          over_price REAL,
+          under_price REAL,
+          PRIMARY KEY (captured_at_utc, fixture_id, bookmaker, market, COALESCE(line, -999999.0)),
+          FOREIGN KEY (fixture_id) REFERENCES fixtures(fixture_id) ON DELETE CASCADE
+        );
+        """
+    )
+
+    return con
 
 
-def _request_odds(
+def fetch_odds_events(
     api_key: str,
     sport_key: str,
     regions: str,
     markets: str,
-    odds_format: str,
-    date_format: str,
-) -> List[dict]:
+    odds_format: str = "decimal",
+    date_format: str = "iso",
+) -> List[Dict[str, Any]]:
     url = f"{ODDS_API_BASE}/sports/{sport_key}/odds"
     params = {
         "apiKey": api_key,
@@ -136,186 +78,217 @@ def _request_odds(
     return data
 
 
-def fetch_odds_events_resilient(settings) -> List[dict]:
-    # Parse markets from settings, keep only supported ones
-    raw = (settings.odds_markets or "").strip()
-    requested = [m.strip() for m in raw.split(",") if m.strip()]
-    markets = [m for m in requested if m in SUPPORTED_MARKETS]
+def parse_totals_25(market_obj: Dict[str, Any]) -> Optional[Tuple[float, float, float]]:
+    """
+    Returns (line, over_price, under_price) for totals line 2.5 only.
+    Odds API totals outcomes include: { name: "Over"/"Under", price: X, point: Y }.
+    """
+    outcomes = market_obj.get("outcomes") or []
+    if not isinstance(outcomes, list):
+        return None
 
-    # If user configured nonsense, fall back hard to totals only
-    if not markets:
-        markets = ["totals"]
+    over_price = None
+    under_price = None
+    line_val = None
 
-    joined = ",".join(markets)
-
-    try:
-        return _request_odds(
-            api_key=settings.odds_api_key,
-            sport_key=settings.odds_sport_key,
-            regions=settings.odds_regions,
-            markets=joined,
-            odds_format=settings.odds_format,
-            date_format=settings.date_format,
-        )
-    except requests.HTTPError as e:
-        # If 422 or similar, retry each market individually and keep what works
-        resp = getattr(e, "response", None)
-        status = getattr(resp, "status_code", None)
-
-        if status != 422:
-            raise
-
-        ok: List[dict] = []
-        for m in markets:
-            try:
-                part = _request_odds(
-                    api_key=settings.odds_api_key,
-                    sport_key=settings.odds_sport_key,
-                    regions=settings.odds_regions,
-                    markets=m,
-                    odds_format=settings.odds_format,
-                    date_format=settings.date_format,
-                )
-                ok.extend(part)
-            except requests.HTTPError:
-                # skip unsupported market
+    for o in outcomes:
+        try:
+            name = str(o.get("name", "")).strip().lower()
+            price = float(o.get("price"))
+            point = o.get("point", None)
+            if point is None:
                 continue
+            point_f = float(point)
+        except Exception:
+            continue
 
-        # de-dupe events by id+markets, keep them all (we store per market anyway)
-        return ok
+        # hard lock to 2.5
+        if abs(point_f - 2.5) > 1e-9:
+            continue
+
+        line_val = 2.5
+        if name == "over":
+            over_price = price
+        elif name == "under":
+            under_price = price
+
+    if line_val is None:
+        return None
+    if over_price is None or under_price is None:
+        return None
+    return (line_val, over_price, under_price)
 
 
-def ensure_fixture_exists_from_odds_event(con, ev: dict, captured_at: str) -> None:
-    fixture_id = str(ev.get("id") or "")
-    if not fixture_id:
-        return
-
-    commence = ev.get("commence_time") or ev.get("commence_time_utc")
-    home_team = ev.get("home_team") or ""
-    away_team = ev.get("away_team") or ""
-    status = ev.get("status") or "TIMED"
-
-    # Insert minimal fixture if missing. If football-data already inserted it, this is ignored.
-    sql = """
-    INSERT OR IGNORE INTO fixtures (
-      fixture_id, commence_time_utc, matchweek, status,
-      home_team, away_team, home_goals, away_goals, last_updated_utc
-    )
-    VALUES (?, ?, NULL, ?, ?, ?, NULL, NULL, ?)
+def parse_btts(market_obj: Dict[str, Any]) -> Optional[Tuple[Optional[float], float, float]]:
     """
-    executemany(con, sql, [(fixture_id, commence, status, home_team, away_team, captured_at)])
-
-
-def extract_two_way_prices(
-    market_key: str, outcomes: List[dict]
-) -> Tuple[Optional[float], Optional[float], Optional[float]]:
+    Returns (line=None, yes_price, no_price) stored as (over_price, under_price).
+    Odds API BTTS outcomes include: { name: "Yes"/"No", price: X }.
     """
-    Returns (line, over_price, under_price) but "over/under" is generic:
-    - totals: Over/Under, line is points
-    - spreads: Home/Away, line is handicap points
-    - btts: Yes/No, line forced to 0.0
-    """
-    want_a, want_b = MARKET_OUTCOME_NAMES.get(market_key, ("Over", "Under"))
-    a_price = None
-    b_price = None
-    line = None
+    outcomes = market_obj.get("outcomes") or []
+    if not isinstance(outcomes, list):
+        return None
 
-    for o in outcomes or []:
-        name = (o.get("name") or "").strip()
-        price = _safe_float(o.get("price"))
-        point = _safe_float(o.get("point"))
+    yes_price = None
+    no_price = None
 
-        if market_key == "btts":
-            # some feeds don't provide point, treat as 0.0
-            line = 0.0
-        else:
-            if point is not None:
-                line = point
+    for o in outcomes:
+        try:
+            name = str(o.get("name", "")).strip().lower()
+            price = float(o.get("price"))
+        except Exception:
+            continue
 
-        if name.lower() == want_a.lower():
-            a_price = price
-        elif name.lower() == want_b.lower():
-            b_price = price
+        if name == "yes":
+            yes_price = price
+        elif name == "no":
+            no_price = price
 
-    return line, a_price, b_price
+    if yes_price is None or no_price is None:
+        return None
+    return (None, yes_price, no_price)
 
 
-def store_odds_snapshots(con, odds_events: List[dict], captured_at: str) -> int:
+def upsert_fixtures(con: sqlite3.Connection, events: List[Dict[str, Any]]) -> int:
     rows = []
-
-    for ev in odds_events:
-        fixture_id = str(ev.get("id") or "")
+    for ev in events:
+        fixture_id = str(ev.get("id", "")).strip()
         if not fixture_id:
             continue
 
-        ensure_fixture_exists_from_odds_event(con, ev, captured_at)
+        commence = ev.get("commence_time")
+        home = ev.get("home_team")
+        away = ev.get("away_team")
 
-        bookmakers = ev.get("bookmakers") or []
-        for bm in bookmakers:
-            bm_name = (bm.get("title") or "").strip()
-            markets = bm.get("markets") or []
-            for mk in markets:
-                market_key = (mk.get("key") or "").strip()
-                if market_key not in SUPPORTED_MARKETS:
-                    continue
+        rows.append(
+            (
+                fixture_id,
+                commence,
+                None,
+                "TIMED",
+                home,
+                away,
+                None,
+                None,
+            )
+        )
 
-                line, a_price, b_price = extract_two_way_prices(market_key, mk.get("outcomes") or [])
-                if line is None:
-                    # totals/spreads require a line
-                    if market_key in {"totals", "alternate_totals", "spreads", "alternate_spreads"}:
-                        continue
-                    line = 0.0
-
-                rows.append(
-                    (
-                        captured_at,
-                        fixture_id,
-                        bm_name,
-                        market_key,
-                        float(line),
-                        a_price,
-                        b_price,
-                    )
-                )
-
-    if not rows:
-        return 0
-
-    sql = """
-    INSERT INTO odds_snapshots (
-      captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
+    con.executemany(
+        """
+        INSERT INTO fixtures (
+          fixture_id, commence_time_utc, matchweek, status,
+          home_team, away_team, home_goals, away_goals
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(fixture_id) DO UPDATE SET
+          commence_time_utc=excluded.commence_time_utc,
+          status=excluded.status,
+          home_team=excluded.home_team,
+          away_team=excluded.away_team;
+        """,
+        rows,
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-    """
-    executemany(con, sql, rows)
     return len(rows)
 
 
+def insert_snapshots(con: sqlite3.Connection, events: List[Dict[str, Any]], captured_at_utc: str) -> int:
+    snap_rows = []
+
+    for ev in events:
+        fixture_id = str(ev.get("id", "")).strip()
+        if not fixture_id:
+            continue
+
+        bookmakers = ev.get("bookmakers") or []
+        if not isinstance(bookmakers, list):
+            continue
+
+        for bm in bookmakers:
+            bm_title = str(bm.get("title") or bm.get("key") or "").strip()
+            if not bm_title:
+                continue
+
+            markets = bm.get("markets") or []
+            if not isinstance(markets, list):
+                continue
+
+            for m in markets:
+                mkey = str(m.get("key", "")).strip().lower()
+                if not mkey:
+                    continue
+
+                if mkey == "totals":
+                    parsed = parse_totals_25(m)
+                    if not parsed:
+                        continue
+                    ln, over_p, under_p = parsed
+                    snap_rows.append((captured_at_utc, fixture_id, bm_title, "totals", ln, over_p, under_p))
+
+                elif mkey == "btts":
+                    parsed = parse_btts(m)
+                    if not parsed:
+                        continue
+                    ln, yes_p, no_p = parsed
+                    snap_rows.append((captured_at_utc, fixture_id, bm_title, "btts", ln, yes_p, no_p))
+
+                else:
+                    # ignore everything else for now, keeps schema sane and stops crashes
+                    continue
+
+    if not snap_rows:
+        return 0
+
+    con.executemany(
+        """
+        INSERT OR REPLACE INTO odds_snapshots (
+          captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?);
+        """,
+        snap_rows,
+    )
+    return len(snap_rows)
+
+
 def main() -> None:
-    settings = get_settings()
+    api_key = os.getenv("ODDS_API_KEY", "").strip()
+    if not api_key or api_key.startswith("YOUR_"):
+        raise RuntimeError("Missing ODDS_API_KEY in GitHub Secrets")
 
-    con = connect(settings.db_path)
-    con.execute("PRAGMA foreign_keys = OFF")
-    init_db(con)
+    # keep it explicit and safe
+    sport_key = "soccer_epl"
+    regions = "uk,eu,us,us2"
 
-    # 1) Upsert fixtures (football-data)
-    fixtures_payload = fetch_pl_matches(settings.football_data_token, days_back=3, days_forward=21)
-    n_fx = store_fixtures_from_football_data(con, fixtures_payload)
+    db_path = "data/app.db"
+    con = ensure_db(db_path)
 
-    # 2) Pull odds (TheOddsAPI), resilient to 422
-    captured_at = utcnow_iso()
-    odds_events = fetch_odds_events_resilient(settings)
+    captured = utcnow_z()
 
-    # 3) Store odds snapshots
-    n_odds = store_odds_snapshots(con, odds_events, captured_at)
+    # try totals + btts, fall back to totals if API complains
+    try:
+        events = fetch_odds_events(api_key, sport_key, regions, markets="totals,btts")
+    except requests.HTTPError as e:
+        # fallback to totals only
+        events = fetch_odds_events(api_key, sport_key, regions, markets="totals")
 
-    con.commit()
-    con.close()
+    with con:
+        n_fix = upsert_fixtures(con, events)
+        n_odds = insert_snapshots(con, events, captured)
 
-    print(f"Upserted fixtures: {n_fx}")
+        # optional cleanup: keep last ~50k snapshots
+        con.execute(
+            """
+            DELETE FROM odds_snapshots
+            WHERE rowid NOT IN (
+              SELECT rowid FROM odds_snapshots
+              ORDER BY captured_at_utc DESC
+              LIMIT 50000
+            );
+            """
+        )
+
+    print(f"Upserted fixtures: {n_fix}")
     print(f"Stored odds snapshots: {n_odds}")
 
 
 if __name__ == "__main__":
     main()
-
