@@ -40,7 +40,7 @@ def get_settings() -> Settings:
 
     odds_sport_key = _get_env("ODDS_SPORT_KEY", "soccer_epl")
     odds_regions = _get_env("ODDS_REGIONS", "uk,eu,us,us2")
-    odds_markets = _get_env("ODDS_MARKETS", "totals")
+    odds_markets = _get_env("ODDS_MARKETS", "totals,btts,spreads")
     odds_format = _get_env("ODDS_FORMAT", "decimal")
     date_format = _get_env("ODDS_DATE_FORMAT", "iso")
 
@@ -67,3 +67,4 @@ def get_settings() -> Settings:
         days_back=days_back,
         days_forward=days_forward,
     )
+
