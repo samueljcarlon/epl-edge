@@ -1,51 +1,172 @@
-name: Run collector and publish
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SportsSignal – EPL Odds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */3 * * *"
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 24px;
+    }
 
-permissions:
-  contents: write
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 28px;
+    }
 
-jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
 
-      - name: Sync main (pull latest before generating files)
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git pull --rebase origin main
+    select {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: none;
+      background: #1f2933;
+      color: #e5e7eb;
+    }
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #020617;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #1f2933;
+      text-align: left;
+      font-size: 14px;
+    }
 
-      - name: Run collect
-        env:
-          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: |
-          python -m src.collect
+    th {
+      background: #020617;
+      color: #94a3b8;
+      font-weight: 600;
+    }
 
-      - name: Export public JSON
-        run: |
-          python -m src.export
+    tr:hover {
+      background: #020617;
+    }
 
-      - name: Commit outputs
-        run: |
-          git add data/app.db site/public/odds.json site/public/data || true
-          git commit -m "Update data + site" || echo "No changes"
-          git push origin main
+    .green {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .red {
+      color: #ef4444;
+      font-weight: 600;
+    }
+
+    .muted {
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SportsSignal – EPL Odds</h1>
+
+  <div class="controls">
+    <select id="marketFilter">
+      <option value="all">All markets</option>
+      <option value="totals">Totals (2.5)</option>
+      <option value="btts">BTTS</option>
+      <option value="spreads">Spreads</option>
+    </select>
+
+    <select id="bookmakerFilter">
+      <option value="all">All bookmakers</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fixture</th>
+        <th>Market</th>
+        <th>Line</th>
+        <th>Bookmaker</th>
+        <th>Over / Yes</th>
+        <th>Under / No</th>
+        <th>Signal</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <script>
+    const rowsEl = document.getElementById("rows");
+    const marketFilter = document.getElementById("marketFilter");
+    const bookmakerFilter = document.getElementById("bookmakerFilter");
+
+    let data = [];
+
+    function signal(over, under) {
+      if (over && over >= 2.0) return { text: "VALUE", cls: "green" };
+      if (under && under >= 2.0) return { text: "VALUE", cls: "green" };
+      return { text: "PASS", cls: "red" };
+    }
+
+    function render() {
+      rowsEl.innerHTML = "";
+
+      const mFilter = marketFilter.value;
+      const bFilter = bookmakerFilter.value;
+
+      data
+        .filter(d => mFilter === "all" || d.market === mFilter)
+        .filter(d => bFilter === "all" || d.bookmaker === bFilter)
+        .forEach(d => {
+          const s = signal(d.over_price, d.under_price);
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+            <td>${d.home_team} vs ${d.away_team}</td>
+            <td>${d.market}</td>
+            <td>${d.line}</td>
+            <td>${d.bookmaker}</td>
+            <td>${d.over_price ?? "-"}</td>
+            <td>${d.under_price ?? "-"}</td>
+            <td class="${s.cls}">${s.text}</td>
+          `;
+          rowsEl.appendChild(tr);
+        });
+    }
+
+    fetch("odds.json")
+      .then(r => r.json())
+      .then(j => {
+        data = j.items || [];
+
+        const books = [...new Set(data.map(d => d.bookmaker))].sort();
+        books.forEach(b => {
+          const o = document.createElement("option");
+          o.value = b;
+          o.textContent = b;
+          bookmakerFilter.appendChild(o);
+        });
+
+        render();
+      })
+      .catch(err => {
+        rowsEl.innerHTML = `<tr><td colspan="7" class="red">Failed to load odds.json</td></tr>`;
+        console.error(err);
+      });
+
+    marketFilter.addEventListener("change", render);
+    bookmakerFilter.addEventListener("change", render);
+  </script>
+</body>
+</html>
