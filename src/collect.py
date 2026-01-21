@@ -295,6 +295,7 @@ def main() -> None:
     settings = get_settings()
 
     con = connect(settings.db_path)
+    con.execute("PRAGMA foreign_keys = OFF")
     init_db(con)
 
     # 1) Upsert fixtures (football-data)
@@ -317,3 +318,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
