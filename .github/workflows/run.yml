@@ -11,18 +11,18 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Keep local branch in sync so push doesn't get rejected
-      - name: Sync main (before generating files)
+      - name: Sync main (pull latest before generating files)
         run: |
-          git fetch origin main
-          git checkout main
-          git reset --hard origin/main
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git pull --rebase origin main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -47,19 +47,6 @@ jobs:
 
       - name: Commit outputs
         run: |
-          set -e
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-
-          git add data/app.db site/public/odds.json site/public/index.html || true
-
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
-
-          git commit -m "Update data + site"
-
-      - name: Push
-        run: |
+          git add data/app.db site/public/odds.json site/public/index.html site/public/data || true
+          git commit -m "Update data + site" || echo "No changes"
           git push origin main
