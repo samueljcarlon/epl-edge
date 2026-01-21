@@ -18,12 +18,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync main (pull latest before generating files)
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git pull --rebase origin main
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -36,7 +30,6 @@ jobs:
 
       - name: Run collect
         env:
-          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           python -m src.collect
@@ -47,6 +40,8 @@ jobs:
 
       - name: Commit outputs
         run: |
-          git add data/app.db site/public/odds.json site/public/index.html site/public/data || true
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add data/app.db site/public/odds.json site/public/index.html || true
           git commit -m "Update data + site" || echo "No changes"
-          git push origin main
+          git push
