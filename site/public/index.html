@@ -195,8 +195,8 @@
             <option value="kickoff_asc">Kickoff (soonest)</option>
             <option value="kickoff_desc">Kickoff (latest)</option>
             <option value="edge_desc">Value (best first)</option>
-            <option value="over_desc">Over price (high)</option>
-            <option value="under_desc">Under price (high)</option>
+            <option value="over_desc">Left price (high)</option>
+            <option value="under_desc">Right price (high)</option>
           </select>
         </div>
       </div>
@@ -269,7 +269,7 @@
   function away(r){ return r.away_team ?? r.awayTeam ?? ''; }
   function bookmaker(r){ return r.bookmaker ?? r.book ?? ''; }
   function market(r){ return r.market ?? ''; }
-  function line(r){
+  function lineVal(r){
     const v = r.line ?? r.total ?? '';
     if (v === null || v === undefined || v === '') return '';
     const n = Number(v);
@@ -277,6 +277,13 @@
   }
   function over(r){ return r.over_price ?? r.over ?? null; }
   function under(r){ return r.under_price ?? r.under ?? null; }
+
+  function labelsForMarket(mk){
+    const m = norm(mk);
+    if (m === 'btts') return { left: 'Yes', right: 'No' };
+    if (m === 'spreads') return { left: 'Home', right: 'Away' };
+    return { left: 'Over', right: 'Under' }; // totals default
+  }
 
   function dotClassFromEdge(edge){
     if (edge === null || edge === undefined) return 'amber';
@@ -311,7 +318,7 @@
     let subset = rows;
     if (mk) subset = rows.filter(r => norm(market(r)) === mk);
 
-    const lines = uniq(subset.map(line))
+    const lines = uniq(subset.map(lineVal))
       .map(x => x.toString())
       .sort((a,b) => (Number(a) || 0) - (Number(b) || 0));
 
@@ -325,7 +332,7 @@
   function groupBest(rows){
     const map = new Map();
     for (const r of rows){
-      const k = `${fixtureId(r)}|${market(r)}|${line(r)}`;
+      const k = `${fixtureId(r)}|${market(r)}|${lineVal(r)}`;
       if (!map.has(k)){
         map.set(k, {
           key: k,
@@ -334,7 +341,7 @@
           home: home(r),
           away: away(r),
           market: market(r),
-          line: line(r),
+          line: lineVal(r),
           rows: []
         });
       }
@@ -343,38 +350,38 @@
 
     const grouped = [];
     for (const g of map.values()){
-      const overs = g.rows.map(over).filter(x => Number.isFinite(Number(x)));
-      const unders = g.rows.map(under).filter(x => Number.isFinite(Number(x)));
+      const lefts = g.rows.map(over).filter(x => Number.isFinite(Number(x)));
+      const rights = g.rows.map(under).filter(x => Number.isFinite(Number(x)));
 
-      const fairOver = fairOddsFromPrices(overs);
-      const fairUnder = fairOddsFromPrices(unders);
+      const fairLeft = fairOddsFromPrices(lefts);
+      const fairRight = fairOddsFromPrices(rights);
 
-      let bestOver = null;
-      let bestUnder = null;
+      let bestLeft = null;
+      let bestRight = null;
 
       for (const r of g.rows){
         const o = Number(over(r));
         const u = Number(under(r));
         if (Number.isFinite(o)){
-          if (!bestOver || o > bestOver.price) bestOver = { price: o, bookmaker: bookmaker(r) };
+          if (!bestLeft || o > bestLeft.price) bestLeft = { price: o, bookmaker: bookmaker(r) };
         }
         if (Number.isFinite(u)){
-          if (!bestUnder || u > bestUnder.price) bestUnder = { price: u, bookmaker: bookmaker(r) };
+          if (!bestRight || u > bestRight.price) bestRight = { price: u, bookmaker: bookmaker(r) };
         }
       }
 
-      const overEdge = (bestOver && fairOver) ? (bestOver.price - fairOver) / fairOver : null;
-      const underEdge = (bestUnder && fairUnder) ? (bestUnder.price - fairUnder) / fairUnder : null;
+      const leftEdge = (bestLeft && fairLeft) ? (bestLeft.price - fairLeft) / fairLeft : null;
+      const rightEdge = (bestRight && fairRight) ? (bestRight.price - fairRight) / fairRight : null;
 
       grouped.push({
         ...g,
-        bestOver,
-        bestUnder,
-        fairOver,
-        fairUnder,
-        overEdge,
-        underEdge,
-        bestEdge: Math.max(overEdge ?? -Infinity, underEdge ?? -Infinity)
+        bestLeft,
+        bestRight,
+        fairLeft,
+        fairRight,
+        leftEdge,
+        rightEdge,
+        bestEdge: Math.max(leftEdge ?? -Infinity, rightEdge ?? -Infinity)
       });
     }
     return grouped;
@@ -392,7 +399,7 @@
       const okQ = !q || norm(home(r)).includes(q) || norm(away(r)).includes(q);
       const okBm = !bm || norm(bookmaker(r)) === bm;
       const okMk = !mk || norm(market(r)) === mk;
-      const okLn = !ln || (line(r) === ln);
+      const okLn = !ln || (lineVal(r) === ln);
       return okQ && okBm && okMk && okLn;
     });
 
@@ -408,6 +415,7 @@
         if (sort === 'under_desc') return (Number(under(b))||-Infinity) - (Number(under(a))||-Infinity);
         return 0;
       });
+
       renderRaw(rows);
       return;
     }
@@ -416,9 +424,9 @@
 
     if (onlyGreen){
       grouped = grouped.filter(g => {
-        const overIsGreen = dotClassFromEdge(g.overEdge) === 'green';
-        const underIsGreen = dotClassFromEdge(g.underEdge) === 'green';
-        return overIsGreen || underIsGreen;
+        const leftIsGreen = dotClassFromEdge(g.leftEdge) === 'green';
+        const rightIsGreen = dotClassFromEdge(g.rightEdge) === 'green';
+        return leftIsGreen || rightIsGreen;
       });
     }
 
@@ -428,8 +436,8 @@
       if (sort === 'kickoff_asc') return ta - tb;
       if (sort === 'kickoff_desc') return tb - ta;
       if (sort === 'edge_desc') return (b.bestEdge ?? -Infinity) - (a.bestEdge ?? -Infinity);
-      if (sort === 'over_desc') return (b.bestOver?.price ?? -Infinity) - (a.bestOver?.price ?? -Infinity);
-      if (sort === 'under_desc') return (b.bestUnder?.price ?? -Infinity) - (a.bestUnder?.price ?? -Infinity);
+      if (sort === 'over_desc') return (b.bestLeft?.price ?? -Infinity) - (a.bestLeft?.price ?? -Infinity);
+      if (sort === 'under_desc') return (b.bestRight?.price ?? -Infinity) - (a.bestRight?.price ?? -Infinity);
       return 0;
     });
 
@@ -445,16 +453,19 @@
     els.content.innerHTML = groups.map(g => {
       const kickoffTxt = g.kickoff ? new Date(g.kickoff).toUTCString().replace('GMT','UTC') : '';
       const title = `${escapeHtml(g.home)} vs ${escapeHtml(g.away)}`;
-      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(g.market)} · Line ${escapeHtml(g.line)}`;
+      const metaLine = g.line ? ` · Line ${escapeHtml(g.line)}` : '';
+      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(g.market)}${metaLine}`;
 
-      const overDot = dotClassFromEdge(g.overEdge);
-      const underDot = dotClassFromEdge(g.underEdge);
+      const leftDot = dotClassFromEdge(g.leftEdge);
+      const rightDot = dotClassFromEdge(g.rightEdge);
 
-      const overBook = g.bestOver ? escapeHtml(g.bestOver.bookmaker) : '—';
-      const underBook = g.bestUnder ? escapeHtml(g.bestUnder.bookmaker) : '—';
+      const leftBook = g.bestLeft ? escapeHtml(g.bestLeft.bookmaker) : '—';
+      const rightBook = g.bestRight ? escapeHtml(g.bestRight.bookmaker) : '—';
 
-      const overPrice = g.bestOver ? g.bestOver.price.toFixed(2) : '';
-      const underPrice = g.bestUnder ? g.bestUnder.price.toFixed(2) : '';
+      const leftPrice = g.bestLeft ? g.bestLeft.price.toFixed(2) : '';
+      const rightPrice = g.bestRight ? g.bestRight.price.toFixed(2) : '';
+
+      const lab = labelsForMarket(g.market);
 
       return `
         <div class="card">
@@ -463,18 +474,18 @@
             <div class="fixtureMeta">${meta}</div>
           </div>
 
-          <div class="badge">${overBook}</div>
+          <div class="badge">${leftBook}</div>
           <div class="badge">${escapeHtml(g.market)}</div>
-          <div class="badge">${escapeHtml(g.line)}</div>
+          <div class="badge">${escapeHtml(g.line || '')}</div>
 
           <div class="priceBox">
-            <div class="priceLabel"><span class="dot ${overDot}"></span>Over</div>
-            <div class="priceValue">${escapeHtml(overPrice)}</div>
+            <div class="priceLabel"><span class="dot ${leftDot}"></span>${escapeHtml(lab.left)}</div>
+            <div class="priceValue">${escapeHtml(leftPrice)}</div>
           </div>
 
           <div class="priceBox">
-            <div class="priceLabel"><span class="dot ${underDot}"></span>Under</div>
-            <div class="priceValue">${escapeHtml(underPrice)}</div>
+            <div class="priceLabel"><span class="dot ${rightDot}"></span>${escapeHtml(lab.right)}</div>
+            <div class="priceValue">${escapeHtml(rightPrice)}</div>
           </div>
         </div>
       `;
@@ -490,14 +501,17 @@
     els.content.innerHTML = rows.map(r => {
       const kickoffTxt = kickoff(r) ? new Date(kickoff(r)).toUTCString().replace('GMT','UTC') : '';
       const title = `${escapeHtml(home(r))} vs ${escapeHtml(away(r))}`;
-      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(market(r))} · Line ${escapeHtml(line(r))}`;
+      const ln = lineVal(r);
+      const metaLine = ln ? ` · Line ${escapeHtml(ln)}` : '';
+      const meta = `Kickoff: ${escapeHtml(kickoffTxt)} · ${escapeHtml(market(r))}${metaLine}`;
 
       const bm = escapeHtml(bookmaker(r));
       const mk = escapeHtml(market(r));
-      const ln = escapeHtml(line(r));
 
       const o = Number(over(r));
       const u = Number(under(r));
+
+      const lab = labelsForMarket(market(r));
 
       return `
         <div class="card">
@@ -508,15 +522,15 @@
 
           <div class="badge">${bm}</div>
           <div class="badge">${mk}</div>
-          <div class="badge">${ln}</div>
+          <div class="badge">${escapeHtml(ln)}</div>
 
           <div class="priceBox">
-            <div class="priceLabel"><span class="dot amber"></span>Over</div>
+            <div class="priceLabel"><span class="dot amber"></span>${escapeHtml(lab.left)}</div>
             <div class="priceValue">${Number.isFinite(o) ? o.toFixed(2) : ''}</div>
           </div>
 
           <div class="priceBox">
-            <div class="priceLabel"><span class="dot amber"></span>Under</div>
+            <div class="priceLabel"><span class="dot amber"></span>${escapeHtml(lab.right)}</div>
             <div class="priceValue">${Number.isFinite(u) ? u.toFixed(2) : ''}</div>
           </div>
         </div>
