@@ -362,7 +362,7 @@ def store_btts_snapshots(con, base_events: list[dict[str, Any]], captured_at: st
                         no_price = prf
 
                 if yes_price is not None and no_price is not None:
-                    rows.append((captured_at, fixture_id, bm_title, "btts", None, yes_price, no_price))
+                    rows.append((captured_at, fixture_id, bm_title, "btts", 0.0, yes_price, no_price))
 
     return _store_rows(con, rows)
 
@@ -402,3 +402,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
