@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +11,7 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
     con = connect(db_path)
     init_db(con)
 
+    # Make rows come back as dicts
     con.row_factory = lambda cursor, row: {
         col[0]: row[idx] for idx, col in enumerate(cursor.description)
     }
@@ -20,54 +20,44 @@ def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
     rows = cur.execute(
         """
         SELECT
-          o.captured_at_utc,
-          o.fixture_id,
-          f.commence_time_utc,
-          f.matchweek,
-          f.status,
-          f.home_team,
-          f.away_team,
-          f.home_goals,
-          f.away_goals,
-          o.bookmaker,
-          o.market,
-          o.line,
-          o.over_price,
-          o.under_price
-        FROM odds_snapshots o
-        JOIN fixtures f USING (fixture_id)
-        ORDER BY
-          f.commence_time_utc ASC,
-          o.market ASC,
-          COALESCE(o.line, -9999) ASC,
-          o.bookmaker ASC,
-          o.captured_at_utc DESC
+          captured_at_utc,
+          fixture_id,
+          commence_time_utc,
+          matchweek,
+          status,
+          home_team,
+          away_team,
+          home_goals,
+          away_goals,
+          bookmaker,
+          market,
+          CASE WHEN market = 'btts' THEN NULL ELSE line END AS line,
+          over_price,
+          under_price
+        FROM odds_view
+        ORDER BY commence_time_utc ASC, fixture_id ASC, bookmaker ASC, market ASC, line ASC
         LIMIT ?
         """,
         (limit,),
     ).fetchall()
 
     payload = {
-        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "count": len(rows),
+        "generated_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "items": rows,
     }
 
-    out_file = Path(out_path)
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+    out = Path(out_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return len(rows)
 
 
 def main() -> None:
-    p = argparse.ArgumentParser()
-    p.add_argument("--db", default="data/app.db")
-    p.add_argument("--out", default="site/public/odds.json")
-    p.add_argument("--limit", type=int, default=5000)
-    args = p.parse_args()
-
-    n = export_odds_json(args.db, args.out, args.limit)
-    print(f"Exported {n} rows to {args.out}")
+    # Keep paths simple and repo-relative
+    db_path = "data/app.db"
+    out_path = "site/public/odds.json"
+    n = export_odds_json(db_path=db_path, out_path=out_path, limit=20000)
+    print(f"Exported {n} rows to {out_path}")
 
 
 if __name__ == "__main__":
