@@ -1,118 +1,98 @@
 from __future__ import annotations
 
+import argparse
 import json
-import os
-from datetime import datetime, timezone
+import sqlite3
 from pathlib import Path
-
-from src.db import connect, init_db
-
-
-ALLOWED_MARKETS = ("totals", "alternate_totals", "spreads", "btts")
+from typing import Any
 
 
-def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
+def connect(db_path: str) -> sqlite3.Connection:
+    con = sqlite3.connect(db_path)
+    con.row_factory = sqlite3.Row  # <-- CRITICAL FIX
+    return con
+
+
+def export_odds_json(db_path: str, out_path: str, limit: int | None) -> int:
     con = connect(db_path)
-    init_db(con)
     cur = con.cursor()
 
-    # Latest snapshot per (fixture_id, bookmaker, market, line)
-    # Export only markets we actually support in the UI (2-outcome style: over/under or yes/no).
-    rows = cur.execute(
-        """
-        WITH ranked AS (
-          SELECT
-            o.captured_at_utc,
-            o.fixture_id,
-            f.commence_time_utc,
-            f.matchweek,
-            f.status,
-            f.home_team,
-            f.away_team,
-            f.home_goals,
-            f.away_goals,
-            o.bookmaker,
-            o.market,
-            o.line,
-            o.over_price,
-            o.under_price,
-            ROW_NUMBER() OVER (
-              PARTITION BY o.fixture_id, o.bookmaker, o.market, o.line
-              ORDER BY o.captured_at_utc DESC
-            ) AS rn
-          FROM odds_snapshots o
-          JOIN fixtures f ON f.fixture_id = o.fixture_id
-          WHERE o.market IN (?, ?, ?, ?)
-        )
-        SELECT
-          captured_at_utc,
-          fixture_id,
-          commence_time_utc,
-          matchweek,
-          status,
-          home_team,
-          away_team,
-          home_goals,
-          away_goals,
-          bookmaker,
-          market,
-          line,
-          over_price,
-          under_price
-        FROM ranked
-        WHERE rn = 1
-        ORDER BY commence_time_utc ASC, fixture_id ASC, bookmaker ASC, market ASC, line ASC
-        LIMIT ?
-        """,
-        (*ALLOWED_MARKETS, limit),
-    ).fetchall()
+    sql = """
+    SELECT
+      f.fixture_id,
+      f.commence_time_utc,
+      f.home_team,
+      f.away_team,
+      o.market,
+      o.line,
+      o.bookmaker,
+      o.over_price,
+      o.under_price,
+      o.captured_at_utc
+    FROM odds_snapshots o
+    JOIN fixtures f ON f.fixture_id = o.fixture_id
+    ORDER BY o.captured_at_utc DESC
+    """
 
-    payload = {
-        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "count": len(rows),
-        "items": [],
-    }
+    if limit:
+        sql += " LIMIT ?"
+        rows = cur.execute(sql, (limit,)).fetchall()
+    else:
+        rows = cur.execute(sql).fetchall()
+
+    # Build structured output
+    out: dict[str, Any] = {"fixtures": []}
+    by_fixture: dict[str, dict[str, Any]] = {}
 
     for r in rows:
-        mk = r["market"]
-        ln = r["line"]
+        fid = r["fixture_id"]
 
-        # For BTTS we don't want the UI showing a fake "line" like 0.0, so export as null.
-        if mk == "btts":
-            ln = None
-
-        payload["items"].append(
-            {
-                "captured_at_utc": r["captured_at_utc"],
-                "fixture_id": r["fixture_id"],
+        if fid not in by_fixture:
+            by_fixture[fid] = {
+                "fixture_id": fid,
                 "commence_time_utc": r["commence_time_utc"],
-                "matchweek": r["matchweek"],
-                "status": r["status"],
                 "home_team": r["home_team"],
                 "away_team": r["away_team"],
-                "home_goals": r["home_goals"],
-                "away_goals": r["away_goals"],
+                "markets": {},
+            }
+
+        mk = r["market"]
+        market_bucket = by_fixture[fid]["markets"].setdefault(mk, [])
+
+        market_bucket.append(
+            {
                 "bookmaker": r["bookmaker"],
-                "market": mk,
-                "line": ln,
+                "line": r["line"],
                 "over_price": r["over_price"],
                 "under_price": r["under_price"],
+                "captured_at_utc": r["captured_at_utc"],
             }
         )
 
-    out_file = Path(out_path)
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    out_file.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    out["fixtures"] = list(by_fixture.values())
+
+    Path(out_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=2)
+
+    con.close()
     return len(rows)
 
 
 def main() -> None:
-    db_path = os.environ.get("DB_PATH", "data/app.db")
-    out_path = os.environ.get("OUT_JSON_PATH", "site/public/odds.json")
-    limit = int(os.environ.get("EXPORT_LIMIT", "5000"))
+    p = argparse.ArgumentParser()
+    p.add_argument("--db-path", required=True)
+    p.add_argument("--out-path", required=True)
+    p.add_argument("--limit", type=int, default=None)
+    args = p.parse_args()
 
-    n = export_odds_json(db_path=db_path, out_path=out_path, limit=limit)
-    print(f"Exported {n} rows to {out_path}")
+    n = export_odds_json(
+        db_path=args.db_path,
+        out_path=args.out_path,
+        limit=args.limit,
+    )
+
+    print(f"Exported {n} odds rows to {args.out_path}")
 
 
 if __name__ == "__main__":
