@@ -14,94 +14,50 @@ FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 
 # Supported by:
-#   GET /sports/{sport_key}/odds
-BASE_ODDS_MARKETS = {"h2h", "spreads", "totals", "outrights"}
-
-# Requires:
-#   GET /sports/{sport_key}/events/{event_id}/odds
-EVENT_ONLY_MARKETS = {"btts"}
+#   GET /sports/{sport}/odds            (base, cheap, supports multiple markets)
+#   GET /sports/{sport}/events/{id}/odds (event-only, for certain markets like BTTS)
 
 
-def _norm(s: str) -> str:
-    return (s or "").strip().lower()
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser()
+    p.add_argument("--season", type=int, default=None)
+    p.add_argument("--days-back", type=int, default=3)
+    p.add_argument("--days-forward", type=int, default=14)
+    return p.parse_args()
 
 
-def _dedupe_keep_order(items: list[str]) -> list[str]:
-    out: list[str] = []
-    seen: set[str] = set()
-    for x in items:
-        if x and x not in seen:
-            out.append(x)
-            seen.add(x)
-    return out
+def ensure_env(settings) -> None:
+    if not settings.football_data_token:
+        raise RuntimeError("Missing FOOTBALL_DATA_TOKEN")
+    if not settings.odds_api_key:
+        raise RuntimeError("Missing ODDS_API_KEY")
 
 
 def sanitize_base_markets(markets: str) -> str:
     """
-    Keep only markets supported by /sports/{sport_key}/odds.
-    Prevents 422 errors.
+    Only allow markets that are known to be supported by the base endpoint.
+    Anything else gets dropped silently.
     """
-    parts = [_norm(x) for x in (markets or "").split(",") if _norm(x)]
-    keep = [p for p in parts if p in BASE_ODDS_MARKETS]
-    if not keep:
-        keep = ["totals"]
-    return ",".join(_dedupe_keep_order(keep))
+    allowed = {"h2h", "spreads", "totals"}
+    want = [m.strip() for m in markets.split(",") if m.strip()]
+    kept = [m for m in want if m in allowed]
+    return ",".join(kept) if kept else "h2h"
 
 
-def fetch_pl_matches(fd_token: str, days_back: int, days_forward: int) -> dict[str, Any]:
-    today = datetime.now(timezone.utc).date()
-    date_from = (today - timedelta(days=days_back)).isoformat()
-    date_to = (today + timedelta(days=days_forward)).isoformat()
-
+def fetch_matches(
+    token: str,
+    competition: str,
+    date_from: str,
+    date_to: str,
+) -> dict[str, Any]:
     r = requests.get(
-        f"{FOOTBALL_DATA_BASE}/competitions/PL/matches",
-        headers={"X-Auth-Token": fd_token},
+        f"{FOOTBALL_DATA_BASE}/competitions/{competition}/matches",
+        headers={"X-Auth-Token": token},
         params={"dateFrom": date_from, "dateTo": date_to},
         timeout=30,
     )
     r.raise_for_status()
     return r.json()
-
-
-def upsert_fixtures(con, matches_json: dict[str, Any]) -> int:
-    rows: list[tuple[Any, ...]] = []
-    now_iso = utcnow_iso()
-
-    for m in matches_json.get("matches", []):
-        fixture_id = str(m["id"])
-        commence = m.get("utcDate")
-        status = m.get("status", "UNKNOWN")
-        matchday = m.get("matchday")
-        home = (m.get("homeTeam") or {}).get("name") or "UNKNOWN_HOME"
-        away = (m.get("awayTeam") or {}).get("name") or "UNKNOWN_AWAY"
-        score = m.get("score") or {}
-        full = (score.get("fullTime") or {})
-        hg = full.get("home")
-        ag = full.get("away")
-
-        rows.append((fixture_id, commence, matchday, status, home, away, hg, ag, now_iso))
-
-    executemany(
-        con,
-        """
-        INSERT INTO fixtures (
-          fixture_id, commence_time_utc, matchweek, status, home_team, away_team,
-          home_goals, away_goals, last_updated_utc
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(fixture_id) DO UPDATE SET
-          commence_time_utc=excluded.commence_time_utc,
-          matchweek=excluded.matchweek,
-          status=excluded.status,
-          home_team=excluded.home_team,
-          away_team=excluded.away_team,
-          home_goals=excluded.home_goals,
-          away_goals=excluded.away_goals,
-          last_updated_utc=excluded.last_updated_utc
-        """,
-        rows,
-    )
-    return len(rows)
 
 
 def fetch_odds_base(
@@ -125,6 +81,20 @@ def fetch_odds_base(
         },
         timeout=30,
     )
+
+    # Debug for 401/429/403 etc without printing the key
+    if r.status_code >= 400:
+        print("ODDS_BASE_FAIL", r.status_code)
+        print(
+            "ODDS_BASE_HEADERS",
+            {
+                k: v
+                for k, v in r.headers.items()
+                if ("request" in k.lower() or "rate" in k.lower())
+            },
+        )
+        print("ODDS_BASE_BODY", r.text[:300])
+
     r.raise_for_status()
     return r.json()
 
@@ -140,7 +110,7 @@ def fetch_event_odds(
 ) -> dict[str, Any] | None:
     """
     Fetch event-only markets like BTTS.
-    If rejected (422 etc), skip without killing the run.
+    If rejected (422, 401, 429 etc), skip without killing the run.
     """
     r = requests.get(
         f"{ODDS_API_BASE}/sports/{sport_key}/events/{event_id}/odds",
@@ -154,14 +124,80 @@ def fetch_event_odds(
         timeout=30,
     )
 
-    # Do NOT crash the pipeline for one bad market or one bad event
     if r.status_code >= 400:
+        print("ODDS_EVENT_FAIL", r.status_code, sport_key, event_id, markets)
+        print(
+            "ODDS_EVENT_HEADERS",
+            {
+                k: v
+                for k, v in r.headers.items()
+                if ("request" in k.lower() or "rate" in k.lower())
+            },
+        )
+        print("ODDS_EVENT_BODY", r.text[:300])
         return None
 
     try:
         return r.json()
     except Exception:
         return None
+
+
+def upsert_fixtures(con, matches_json: dict[str, Any]) -> None:
+    rows: list[tuple[Any, ...]] = []
+    for m in matches_json.get("matches", []):
+        fixture_id = str(m.get("id"))
+        commence = m.get("utcDate")
+        status = m.get("status")
+        home = (m.get("homeTeam") or {}).get("name")
+        away = (m.get("awayTeam") or {}).get("name")
+        score = m.get("score") or {}
+        full = score.get("fullTime") or {}
+        home_goals = full.get("home")
+        away_goals = full.get("away")
+        last_updated = m.get("lastUpdated")
+
+        # matchweek can be missing
+        season = m.get("season") or {}
+        matchweek = season.get("currentMatchday")
+
+        rows.append(
+            (
+                fixture_id,
+                commence,
+                matchweek,
+                status,
+                home,
+                away,
+                home_goals,
+                away_goals,
+                last_updated,
+            )
+        )
+
+    if not rows:
+        return
+
+    executemany(
+        con,
+        """
+        INSERT INTO fixtures(
+            fixture_id, commence_time_utc, matchweek, status,
+            home_team, away_team, home_goals, away_goals, last_updated_utc
+        )
+        VALUES(?,?,?,?,?,?,?,?,?)
+        ON CONFLICT(fixture_id) DO UPDATE SET
+            commence_time_utc=excluded.commence_time_utc,
+            matchweek=excluded.matchweek,
+            status=excluded.status,
+            home_team=excluded.home_team,
+            away_team=excluded.away_team,
+            home_goals=excluded.home_goals,
+            away_goals=excluded.away_goals,
+            last_updated_utc=excluded.last_updated_utc
+        """,
+        rows,
+    )
 
 
 def _fixture_id_for_event(con, commence: str, home: str, away: str) -> str | None:
@@ -176,230 +212,289 @@ def _fixture_id_for_event(con, commence: str, home: str, away: str) -> str | Non
     cur = con.cursor()
     got = cur.execute(
         """
-        SELECT fixture_id FROM fixtures
+        SELECT fixture_id
+        FROM fixtures
         WHERE commence_time_utc = ?
-          AND lower(home_team) = ?
-          AND lower(away_team) = ?
+          AND home_team = ?
+          AND away_team = ?
         LIMIT 1
         """,
-        (commence, _norm(home), _norm(away)),
+        (commence, home, away),
     ).fetchone()
 
-    if not got:
+    if got is None:
         return None
-
-    # name-based (sqlite3.Row) or dict-like
+    if isinstance(got, dict):
+        return got.get("fixture_id")
     try:
-        return got["fixture_id"]  # type: ignore[index]
+        return got["fixture_id"]  # sqlite3.Row
     except Exception:
-        pass
-
-    # tuple-based
-    try:
-        return str(got[0])
-    except Exception:
-        return None
+        return got[0]  # tuple fallback
 
 
-def _store_rows(con, rows: list[tuple[Any, ...]]) -> int:
-    if not rows:
-        return 0
-
-    executemany(
-        con,
-        """
-        INSERT INTO odds_snapshots (
-          captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        """,
-        rows,
-    )
-    return len(rows)
-
-
-def store_base_market_snapshots(con, events: list[dict[str, Any]], captured_at: str) -> int:
+def extract_total_prices(
+    bookmakers: list[dict[str, Any]], wanted_lines: list[float]
+) -> list[tuple[str, float, float, float]]:
     """
-    Stores totals + spreads from /sports/{sport_key}/odds.
-
-    totals:
-      line = total points (2.5)
-      over_price = Over
-      under_price = Under
-
-    spreads:
-      line = HOME handicap (example -0.5)
-      over_price = Home price
-      under_price = Away price
+    Return rows:
+      (bookmaker_key, line, over_price, under_price)
+    for totals market only.
     """
-    rows: list[tuple[Any, ...]] = []
+    out: list[tuple[str, float, float, float]] = []
 
-    for ev in events:
-        commence = ev.get("commence_time")
-        home = ev.get("home_team")
-        away = ev.get("away_team")
-        if not (commence and home and away):
-            continue
+    for b in bookmakers or []:
+        bkey = b.get("key") or b.get("title") or ""
+        for market in b.get("markets") or []:
+            if market.get("key") != "totals":
+                continue
 
-        fixture_id = _fixture_id_for_event(con, commence, home, away)
-        if not fixture_id:
-            continue
-
-        for bm in ev.get("bookmakers", []):
-            bm_title = bm.get("title") or bm.get("key") or "unknown_book"
-
-            for mk in bm.get("markets", []):
-                mkey = mk.get("key")
-
-                if mkey == "totals":
-                    by_line: dict[float, dict[str, float]] = {}
-                    for out in mk.get("outcomes", []):
-                        point = out.get("point")
-                        name = _norm(out.get("name"))
-                        price = out.get("price")
-                        if point is None or price is None:
-                            continue
-                        try:
-                            ln = float(point)
-                            pr = float(price)
-                        except (TypeError, ValueError):
-                            continue
-                        if name not in ("over", "under"):
-                            continue
-                        by_line.setdefault(ln, {})[name] = pr
-
-                    for ln, ou in by_line.items():
-                        if "over" in ou and "under" in ou:
-                            rows.append((captured_at, fixture_id, bm_title, "totals", ln, ou["over"], ou["under"]))
-
-                elif mkey == "spreads":
-                    by_line: dict[float, dict[str, float]] = {}
-                    for out in mk.get("outcomes", []):
-                        point = out.get("point")
-                        name = out.get("name")
-                        price = out.get("price")
-                        if point is None or name is None or price is None:
-                            continue
-                        try:
-                            pr = float(price)
-                            ln = float(point)
-                        except (TypeError, ValueError):
-                            continue
-
-                        nm = _norm(str(name))
-                        if nm == _norm(home):
-                            by_line.setdefault(ln, {})["home"] = pr
-                        elif nm == _norm(away):
-                            by_line.setdefault(-ln, {})["away"] = pr
-
-                    for ln, vals in by_line.items():
-                        if "home" in vals and "away" in vals:
-                            rows.append((captured_at, fixture_id, bm_title, "spreads", ln, vals["home"], vals["away"]))
-
-    return _store_rows(con, rows)
-
-
-def store_btts_snapshots(con, base_events: list[dict[str, Any]], captured_at: str, settings) -> int:
-    """
-    BTTS must be fetched per-event.
-    Mapping for our table shape:
-      Yes -> over_price
-      No  -> under_price
-      line -> NULL
-    """
-    rows: list[tuple[Any, ...]] = []
-    seen_event_ids: set[str] = set()
-
-    for ev in base_events:
-        event_id = ev.get("id")
-        commence = ev.get("commence_time")
-        home = ev.get("home_team")
-        away = ev.get("away_team")
-        if not (event_id and commence and home and away):
-            continue
-        if str(event_id) in seen_event_ids:
-            continue
-        seen_event_ids.add(str(event_id))
-
-        fixture_id = _fixture_id_for_event(con, commence, home, away)
-        if not fixture_id:
-            continue
-
-        payload = fetch_event_odds(
-            odds_key=settings.odds_api_key,
-            sport_key=settings.odds_sport_key,
-            event_id=str(event_id),
-            regions=settings.odds_regions,
-            markets="btts",
-            odds_format=settings.odds_format,
-            date_format=settings.date_format,
-        )
-        if not payload:
-            continue
-
-        for bm in payload.get("bookmakers", []):
-            bm_title = bm.get("title") or bm.get("key") or "unknown_book"
-            for mk in bm.get("markets", []):
-                if mk.get("key") != "btts":
+            for o in market.get("outcomes") or []:
+                # outcome: {name: "Over"/"Under", price: 1.9, point: 2.5}
+                line = o.get("point")
+                if line is None:
+                    continue
+                try:
+                    line_f = float(line)
+                except Exception:
+                    continue
+                if wanted_lines and line_f not in wanted_lines:
                     continue
 
-                yes_price = None
-                no_price = None
+            # We need pairs for Over/Under per line
+            # Build a map line -> (over, under)
+            pairs: dict[float, dict[str, float]] = {}
+            for o in market.get("outcomes") or []:
+                line = o.get("point")
+                price = o.get("price")
+                name = (o.get("name") or "").lower()
+                if line is None or price is None:
+                    continue
+                try:
+                    line_f = float(line)
+                    price_f = float(price)
+                except Exception:
+                    continue
+                if wanted_lines and line_f not in wanted_lines:
+                    continue
 
-                for out in mk.get("outcomes", []):
-                    nm = _norm(out.get("name"))
-                    pr = out.get("price")
-                    if pr is None:
-                        continue
-                    try:
-                        prf = float(pr)
-                    except (TypeError, ValueError):
-                        continue
+                if line_f not in pairs:
+                    pairs[line_f] = {}
+                if "over" in name:
+                    pairs[line_f]["over"] = price_f
+                elif "under" in name:
+                    pairs[line_f]["under"] = price_f
 
-                    if nm in ("yes", "y"):
-                        yes_price = prf
-                    elif nm in ("no", "n"):
-                        no_price = prf
+            for line_f, pu in pairs.items():
+                if "over" in pu and "under" in pu:
+                    out.append((bkey, line_f, pu["over"], pu["under"]))
 
-                if yes_price is not None and no_price is not None:
-                    rows.append((captured_at, fixture_id, bm_title, "btts", 0.0, yes_price, no_price))
+    return out
 
-    return _store_rows(con, rows)
+
+def extract_btts_prices(bookmakers: list[dict[str, Any]]) -> list[tuple[str, float, float]]:
+    """
+    Return rows:
+      (bookmaker_key, yes_price, no_price)
+    from btts market outcomes.
+    """
+    out: list[tuple[str, float, float]] = []
+
+    for b in bookmakers or []:
+        bkey = b.get("key") or b.get("title") or ""
+        for market in b.get("markets") or []:
+            if market.get("key") != "btts":
+                continue
+
+            yes_p = None
+            no_p = None
+
+            for o in market.get("outcomes") or []:
+                name = (o.get("name") or "").strip().lower()
+                price = o.get("price")
+                if price is None:
+                    continue
+                try:
+                    price_f = float(price)
+                except Exception:
+                    continue
+
+                if name in {"yes", "y", "true"}:
+                    yes_p = price_f
+                elif name in {"no", "n", "false"}:
+                    no_p = price_f
+
+            if yes_p is not None and no_p is not None:
+                out.append((bkey, yes_p, no_p))
+
+    return out
+
+
+def write_totals_odds_snapshots(
+    con,
+    captured_at_utc: str,
+    event: dict[str, Any],
+    wanted_lines: list[float],
+) -> None:
+    event_id = event.get("id")
+    commence = event.get("commence_time")
+    home = event.get("home_team")
+    away = event.get("away_team")
+
+    if not (event_id and commence and home and away):
+        return
+
+    fixture_id = _fixture_id_for_event(con, commence, home, away)
+    if fixture_id is None:
+        return
+
+    rows: list[tuple[Any, ...]] = []
+    bookmakers = event.get("bookmakers") or []
+    totals_rows = extract_total_prices(bookmakers, wanted_lines)
+
+    for bookmaker_key, line, over_p, under_p in totals_rows:
+        rows.append(
+            (
+                captured_at_utc,
+                fixture_id,
+                bookmaker_key,
+                "totals",
+                line,
+                over_p,
+                under_p,
+            )
+        )
+
+    if rows:
+        executemany(
+            con,
+            """
+            INSERT INTO odds_snapshots(
+                captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
+            )
+            VALUES(?,?,?,?,?,?,?)
+            """,
+            rows,
+        )
+
+
+def write_btts_odds_snapshots(
+    con,
+    captured_at_utc: str,
+    event_odds_json: dict[str, Any],
+) -> None:
+    event_id = event_odds_json.get("id")
+    commence = event_odds_json.get("commence_time")
+    home = event_odds_json.get("home_team")
+    away = event_odds_json.get("away_team")
+
+    if not (event_id and commence and home and away):
+        return
+
+    fixture_id = _fixture_id_for_event(con, commence, home, away)
+    if fixture_id is None:
+        return
+
+    rows: list[tuple[Any, ...]] = []
+    bookmakers = event_odds_json.get("bookmakers") or []
+    btts_rows = extract_btts_prices(bookmakers)
+
+    for bookmaker_key, yes_p, no_p in btts_rows:
+        # Store btts as "line=None", encode yes as over_price, no as under_price
+        rows.append(
+            (
+                captured_at_utc,
+                fixture_id,
+                bookmaker_key,
+                "btts",
+                None,
+                yes_p,
+                no_p,
+            )
+        )
+
+    if rows:
+        executemany(
+            con,
+            """
+            INSERT INTO odds_snapshots(
+                captured_at_utc, fixture_id, bookmaker, market, line, over_price, under_price
+            )
+            VALUES(?,?,?,?,?,?,?)
+            """,
+            rows,
+        )
+
+
+def iso_date(d: datetime) -> str:
+    return d.date().isoformat()
 
 
 def main() -> None:
-    p = argparse.ArgumentParser()
-    p.add_argument("--days-back", type=int, default=14)
-    p.add_argument("--days-forward", type=int, default=14)
-    args = p.parse_args()
+    args = parse_args()
+    settings = get_settings()
+    ensure_env(settings)
 
-    s = get_settings()
-    con = connect(s.db_path)
+    now = datetime.now(timezone.utc)
+    date_from = iso_date(now - timedelta(days=args.days_back))
+    date_to = iso_date(now + timedelta(days=args.days_forward))
+
+    matches_json = fetch_matches(
+        token=settings.football_data_token,
+        competition=settings.football_competition,
+        date_from=date_from,
+        date_to=date_to,
+    )
+
+    con = connect(settings.db_path)
     init_db(con)
 
-    matches = fetch_pl_matches(s.football_data_token, args.days_back, args.days_forward)
-    n_fix = upsert_fixtures(con, matches)
+    upsert_fixtures(con, matches_json)
 
     captured_at = utcnow_iso()
 
     base_events = fetch_odds_base(
-        odds_key=s.odds_api_key,
-        sport_key=s.odds_sport_key,
-        regions=s.odds_regions,
-        markets=s.odds_markets,
-        odds_format=s.odds_format,
-        date_format=s.date_format,
+        odds_key=settings.odds_api_key,
+        sport_key=settings.odds_sport_key,
+        regions=settings.odds_regions,
+        markets=settings.odds_markets,
+        odds_format=settings.odds_format,
+        date_format=settings.odds_date_format,
     )
 
-    n_base = store_base_market_snapshots(con, base_events, captured_at)
-    n_btts = store_btts_snapshots(con, base_events, captured_at, s)
+    # Write totals snapshots from base events
+    try:
+        wanted_lines = [float(x) for x in (settings.totals_lines or "").split(",") if x.strip()]
+    except Exception:
+        wanted_lines = []
 
-    print(f"Upserted fixtures: {n_fix}")
-    print(f"Stored base odds snapshots: {n_base}")
-    print(f"Stored BTTS snapshots: {n_btts}")
-    print(f"Base markets used: {sanitize_base_markets(s.odds_markets)}")
+    for e in base_events or []:
+        write_totals_odds_snapshots(con, captured_at, e, wanted_lines)
+
+    # Event-only BTTS fetch (optional, non-fatal)
+    # This is what can explode request volume, so it is kept non-fatal by design.
+    for e in base_events or []:
+        event_id = e.get("id")
+        if not event_id:
+            continue
+
+        event_json = fetch_event_odds(
+            odds_key=settings.odds_api_key,
+            sport_key=settings.odds_sport_key,
+            event_id=event_id,
+            regions=settings.odds_regions,
+            markets="btts",
+            odds_format=settings.odds_format,
+            date_format=settings.odds_date_format,
+        )
+
+        if event_json is None:
+            continue
+
+        write_btts_odds_snapshots(con, captured_at, event_json)
+
+    con.close()
+    print("collect done", captured_at)
 
 
 if __name__ == "__main__":
     main()
-
