@@ -1,83 +1,73 @@
 from __future__ import annotations
 
+import argparse
 import json
-import os
-import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List
 
-
-def utcnow_iso() -> str:
-    return datetime.now(timezone.utc).isoformat()
+from src.db import connect, init_db
 
 
 def export_odds_json(db_path: str, out_path: str, limit: int = 5000) -> int:
-    con = sqlite3.connect(db_path)
-    con.execute("PRAGMA foreign_keys = ON;")
+    con = connect(db_path)
+    init_db(con)
 
-    # return dict rows
-    con.row_factory = sqlite3.Row
+    con.row_factory = lambda cursor, row: {
+        col[0]: row[idx] for idx, col in enumerate(cursor.description)
+    }
+    cur = con.cursor()
 
-    sql = """
-    WITH ranked AS (
-      SELECT
-        s.captured_at_utc,
-        s.fixture_id,
-        s.bookmaker,
-        s.market,
-        s.line,
-        s.over_price,
-        s.under_price,
-        ROW_NUMBER() OVER (
-          PARTITION BY s.fixture_id, s.bookmaker, s.market, COALESCE(s.line, -999999.0)
-          ORDER BY s.captured_at_utc DESC
-        ) AS rn
-      FROM odds_snapshots s
-    )
-    SELECT
-      r.captured_at_utc,
-      f.fixture_id,
-      f.commence_time_utc,
-      f.matchweek,
-      f.status,
-      f.home_team,
-      f.away_team,
-      f.home_goals,
-      f.away_goals,
-      r.bookmaker,
-      r.market,
-      r.line,
-      r.over_price,
-      r.under_price
-    FROM ranked r
-    JOIN fixtures f ON f.fixture_id = r.fixture_id
-    WHERE r.rn = 1
-    ORDER BY f.commence_time_utc ASC
-    LIMIT ?;
-    """
-
-    rows = con.execute(sql, (limit,)).fetchall()
-    items: List[Dict[str, Any]] = [dict(r) for r in rows]
+    rows = cur.execute(
+        """
+        SELECT
+          o.captured_at_utc,
+          o.fixture_id,
+          f.commence_time_utc,
+          f.matchweek,
+          f.status,
+          f.home_team,
+          f.away_team,
+          f.home_goals,
+          f.away_goals,
+          o.bookmaker,
+          o.market,
+          o.line,
+          o.over_price,
+          o.under_price
+        FROM odds_snapshots o
+        JOIN fixtures f USING (fixture_id)
+        ORDER BY
+          f.commence_time_utc ASC,
+          o.market ASC,
+          COALESCE(o.line, -9999) ASC,
+          o.bookmaker ASC,
+          o.captured_at_utc DESC
+        LIMIT ?
+        """,
+        (limit,),
+    ).fetchall()
 
     payload = {
-        "generated_at_utc": utcnow_iso(),
-        "count": len(items),
-        "items": items,
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "count": len(rows),
+        "items": rows,
     }
 
-    outp = Path(out_path)
-    outp.parent.mkdir(parents=True, exist_ok=True)
-    outp.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
-
-    return len(items)
+    out_file = Path(out_path)
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+    out_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+    return len(rows)
 
 
 def main() -> None:
-    db_path = os.getenv("DB_PATH", "data/app.db")
-    out_path = os.getenv("OUT_PATH", "site/public/odds.json")
-    n = export_odds_json(db_path, out_path)
-    print(f"Exported {n} rows to {out_path}")
+    p = argparse.ArgumentParser()
+    p.add_argument("--db", default="data/app.db")
+    p.add_argument("--out", default="site/public/odds.json")
+    p.add_argument("--limit", type=int, default=5000)
+    args = p.parse_args()
+
+    n = export_odds_json(args.db, args.out, args.limit)
+    print(f"Exported {n} rows to {args.out}")
 
 
 if __name__ == "__main__":
