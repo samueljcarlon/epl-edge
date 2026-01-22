@@ -154,6 +154,7 @@ def fetch_event_odds(
         timeout=30,
     )
 
+    # Do NOT crash the pipeline for one bad market or one bad event
     if r.status_code >= 400:
         return None
 
@@ -164,6 +165,14 @@ def fetch_event_odds(
 
 
 def _fixture_id_for_event(con, commence: str, home: str, away: str) -> str | None:
+    """
+    IMPORTANT:
+    sqlite fetchone() might return:
+      - tuple (default)
+      - sqlite3.Row (indexable by name)
+      - dict (if you set a dict row_factory elsewhere)
+    So we handle all three.
+    """
     cur = con.cursor()
     got = cur.execute(
         """
@@ -175,7 +184,21 @@ def _fixture_id_for_event(con, commence: str, home: str, away: str) -> str | Non
         """,
         (commence, _norm(home), _norm(away)),
     ).fetchone()
-    return got["fixture_id"] if got else None
+
+    if not got:
+        return None
+
+    # name-based (sqlite3.Row) or dict-like
+    try:
+        return got["fixture_id"]  # type: ignore[index]
+    except Exception:
+        pass
+
+    # tuple-based
+    try:
+        return str(got[0])
+    except Exception:
+        return None
 
 
 def _store_rows(con, rows: list[tuple[Any, ...]]) -> int:
@@ -279,7 +302,7 @@ def store_base_market_snapshots(con, events: list[dict[str, Any]], captured_at: 
 def store_btts_snapshots(con, base_events: list[dict[str, Any]], captured_at: str, settings) -> int:
     """
     BTTS must be fetched per-event.
-    Mapping:
+    Mapping for our table shape:
       Yes -> over_price
       No  -> under_price
       line -> NULL
@@ -294,9 +317,9 @@ def store_btts_snapshots(con, base_events: list[dict[str, Any]], captured_at: st
         away = ev.get("away_team")
         if not (event_id and commence and home and away):
             continue
-        if event_id in seen_event_ids:
+        if str(event_id) in seen_event_ids:
             continue
-        seen_event_ids.add(event_id)
+        seen_event_ids.add(str(event_id))
 
         fixture_id = _fixture_id_for_event(con, commence, home, away)
         if not fixture_id:
